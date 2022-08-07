@@ -15,7 +15,7 @@ build-job:
     - echo "Hello, $GITLAB_USER_LOGIN!"
 
 deploy-staging:
-  type: deploy
+  stage: deploy
   environment:
     name: staging
     url: staging.jtiong.dev
