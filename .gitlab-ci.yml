@@ -20,6 +20,6 @@ deploy_staging:
     name: staging
     url: staging.jtiong.dev
   script:
-    - ssh root@core.jtiong.dev "cd var/www/staging.jtiong.dev && git checkout main && git pull origin main && exit"
+    - ssh root@192.168.1.11 "cd /root/sites/staging.jtiong.dev && git checkout main && git pull origin main && exit"
   only:
     - main
