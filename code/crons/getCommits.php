@@ -18,11 +18,11 @@ foreach ($projects as $project) {
             $entryCheck = R::findOne('commits', ' hash = ?', [ $commit['id'] ]);
             if ($entryCheck == null) {
                 $entry = R::xdispense('commits');
+                $entry['time']    = strtotime($commit['created_at']);
                 $entry['project'] = $project['path'];
                 $entry['branch']  = $branch['name'];
                 $entry['hash']    = $commit['id'];
                 $entry['title']   = $commit['title'];
-                $entry['created'] = strtotime($commit['created_at']);
                 R::store($entry);
             }
         }
