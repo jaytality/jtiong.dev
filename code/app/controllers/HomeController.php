@@ -16,7 +16,9 @@ class HomeController extends Controller
 {
     function index()
     {
-        $this->viewData['commits'] = R::find('commits', ' ORDER BY time DESC');
+        $commits = R::find('commits', ' ORDER BY time DESC');
+        $this->viewData['commits'] = $commits;
+
 
 		$this->viewOpts['page']['layout']  = 'default';
         $this->viewOpts['page']['content'] = 'home/index';
