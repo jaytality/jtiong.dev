@@ -12,10 +12,10 @@ deploy-staging:
   stage: deploy
   environment:
     name: staging
-    url: $STAGING_URL
+    url: staging.jtiong.dev
   script:
-    - echo "Staging URL: $STAGING_URL"
-    - ssh root@192.168.1.11 "cd /root/sites/$STAGING_URL && git checkout staging && git pull origin main && chmod a+x *.sh && exit"
+    - echo "Staging"
+    - ssh root@192.168.1.11 "cd /root/sites/staging.jtiong.dev && git checkout staging && git pull origin main && chmod a+x *.sh && exit"
   only:
     - staging
 
@@ -23,9 +23,9 @@ deploy-production:
   stage: deploy
   environment:
     name: production
-    url: $PRODUCTION_URL
+    url: jtiong.dev
   script:
-    - echo "Staging URL: $PRODUCTION_URL"
-    - ssh root@192.168.1.11 "cd /root/sites/$PRODUCTION_URL && git checkout production && git pull origin main && chmod a+x *.sh && exit"
+    - echo "Production"
+    - ssh root@192.168.1.11 "cd /root/sites/jtiong.dev && git checkout production && git pull origin main && chmod a+x *.sh && exit"
   only:
     - production
