@@ -17,9 +17,13 @@
     <div class="row">
         <div class="col-md-12">
             <?php
+                if ($page == 0) {
+                    $page = 1;
+                }
+
                 for ($i = 1; $i <= $totalPages; $i++) {
                     ?>
-                        <a href="<?=($i == 1) ? '/' : '/' . $i?>" class="btn btn-primary<?=($page + 1) == $i ? ' btn-light' : ''?>"><?=$i?></a>
+                        <a href="<?=($i == 1) ? '/' : '/' . $i?>" class="btn btn-primary<?=$page == $i ? ' btn-light' : ''?>"><?=$i?></a>
                     <?php
                 }
             ?>
