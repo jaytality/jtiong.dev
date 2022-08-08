@@ -11,16 +11,16 @@ session_start();
 define('ROOT', dirname(__FILE__));
 
 // file location constants
-define('ctrlr', ROOT.'/app/controllers');
-define('model', ROOT.'/app/models');
-define('views', ROOT.'/app/views');
+define('ctrlr', ROOT . '/app/controllers');
+define('model', ROOT . '/app/models');
+define('views', ROOT . '/app/views');
 
 // autoload composer
 require 'vendor/autoload.php';
 
 // configuration and ORM
-require ROOT.'/config.php';
-require ROOT.'/R.php';
+require ROOT . '/config.php';
+require ROOT . '/R.php';
 
 R::setup(getConfig('database.type') . ':host=' . getConfig('database.host') . ';dbname=' . getConfig('database.name'), getConfig('database.user'), getConfig('database.pass'));
 R::ext('xdispense', function ($type) {
