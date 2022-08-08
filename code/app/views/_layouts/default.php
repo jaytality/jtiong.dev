@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MPU - Multiplayer United<?=!empty($viewOpts['page']['title']) ? ' | ' . $viewOpts['page']['title'] : ''?></title>
+    <title>jtiong.dev</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link href="/public/css/bootstrap.min.css" rel="stylesheet">
@@ -20,7 +20,7 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
             <div class="container">
-                <a class="navbar-brand" href="/"><img src="/public/img/mpu-brand.png" alt=""></a>
+                <a class="navbar-brand" href="/"><img src="/public/img/logo.svg" alt="" style="height: 64px; "></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainmenu" aria-controls="mainmenu" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
