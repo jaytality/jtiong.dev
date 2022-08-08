@@ -18,18 +18,27 @@ class HomeController extends Controller
     {
         $this->viewData['page'] = $page;
 
-        if ($page != 0) {
+        if ($page > 0) {
             $page = $page - 1;
         }
 
         $offset = $page * 50;
+
         if ($offset == 0) {
             $commits = R::find('commits', ' ORDER BY time DESC LIMIT 50');
         } else {
             $commits = R::find('commits', ' ORDER BY time DESC LIMIT 50 OFFSET ' . $offset );
         }
+        $totalPages = R::count('commits') / 50;
+        $totalPages = (int)$totalPages;
 
         $this->viewData['commits'] = $commits;
+
+        // navigation variables
+        $this->viewData['here']    = $page;
+        $this->viewData['from']    = 0;
+        $this->viewData['to']      = 0;
+        $this->viewData['end']     = $totalPages;
 
 		$this->viewOpts['page']['layout']  = 'default';
         $this->viewOpts['page']['content'] = 'home/index';
