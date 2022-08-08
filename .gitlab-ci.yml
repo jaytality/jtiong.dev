@@ -14,7 +14,7 @@ deploy-staging:
     name: staging
     url: $STAGING_URL
   script:
-    - ssh root@192.168.1.11 "cd /root/sites/$STAGING_URL && git checkout main && git pull origin main && exit"
+    - ssh root@192.168.1.11 "cd /root/sites/$STAGING_URL && git checkout main && git pull origin main && chmod a+x *.sh && exit"
   only:
     - main
 
@@ -24,6 +24,6 @@ deploy-production:
     name: production
     url: $PRODUCTION_URL
   script:
-    - ssh root@192.168.1.11 "cd /root/sites/$PRODUCTION_URL && git checkout main && git pull origin main && exit"
+    - ssh root@192.168.1.11 "cd /root/sites/$PRODUCTION_URL && git checkout main && git pull origin main && chmod a+x *.sh && exit"
   only:
     - production
