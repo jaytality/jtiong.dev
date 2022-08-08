@@ -31,7 +31,7 @@ foreach ($projects as $project) {
                 $entry['time']    = strtotime($commit['created_at']);
                 $entry['project'] = $project['path'];
                 $entry['branch']  = $branch['name'];
-                $entry['hash']    = $commit['id'];
+                $entry['hash']    = $commit['short_id'];
                 $entry['title']   = $commit['title'];
                 R::store($entry);
             }
