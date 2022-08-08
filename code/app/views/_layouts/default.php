@@ -54,7 +54,7 @@
     <footer class="footer mt-auto py-3">
         <div class="container">
             <hr>
-            <small class="text-muted">Copyright &copy; Multiplayer United, 1997 - <?=date('Y')?>. All Rights Reserved.</small>
+            <small class="text-muted">Copyright &copy; Johnathan Tiong, 2022 - <?=date('Y')?>. All Rights Reserved.</small>
         </div>
     </footer>
 
