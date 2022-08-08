@@ -17,9 +17,9 @@
     <div class="row">
         <div class="col-md-12">
             <?php
-                for ($i = 0; $i < $totalPages; $i++) {
+                for ($i = 1; $i < $totalPages; $i++) {
                     ?>
-                        <a href="<?=$i == 0 ? '/' : '/' . $i + 1?>" class="btn btn-primary"><?=$i + 1?></a>
+                        <a href="<?=$i == 1 ? '/' : '/' . $i?>" class="btn btn-primary"><?=$i?></a>
                     <?php
                 }
             ?>
