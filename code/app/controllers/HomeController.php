@@ -8,6 +8,8 @@ use \spark\Core\Controller as Controller;
 
 use \spark\Models\HomeModel;
 
+use \spark\Helpers\Curl;
+
 use \R as R;
 
 class HomeController extends Controller
@@ -16,6 +18,9 @@ class HomeController extends Controller
     {
         // $this->viewData['posts'] = BlogModel::getPosts(3);
         // $this->viewData['servers'] = GameModel::getServersInfo();
+
+        $projects = Curl::get('https://gitlab.jtiong.dev/api/v4/projects?private_token=' . getConfig('gitlab.token'));
+        $this->viewData['projects'] = json_decode($projects, true);
 
 		$this->viewOpts['page']['layout']  = 'default';
         $this->viewOpts['page']['content'] = 'home/index';
