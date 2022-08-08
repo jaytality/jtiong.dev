@@ -16,7 +16,7 @@ services:
       - ../data/logs/error.log:/var/www/error.log
       - ../data/logs/access.log:/var/www/access.log
     environment:
-      VIRTUAL_HOST: staging.jtiong.dev, staging.jtiong.dev
+      VIRTUAL_HOST: staging.jtiong.dev
       LETSENCRYPT_HOST: staging.jtiong.dev
       LETSENCRYPT_EMAIL: j.tiong.notifier@gmail.com
     restart: always
