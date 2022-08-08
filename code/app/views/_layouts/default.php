@@ -30,11 +30,7 @@
                 ?>
 
                 <div class="collapse navbar-collapse" id="mainmenu">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item<?=$viewOpts['page']['section'] == 'home' ? ' active' : ''?>">
-                            <a class="nav-link" href="/">Commits</a>
-                        </li>
-                    </ul>
+                    J T I O N G . D E V
                 </div>
             </div>
         </nav>
