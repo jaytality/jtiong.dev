@@ -20,13 +20,12 @@ class HomeController extends Controller
         $projects = $curl->get('https://gitlab.jtiong.dev/api/v4/projects?private_token=' . getConfig('gitlab.token'));
         $projects = json_decode($projects, true);
 
+        // for each project...
         foreach ($projects as $project) {
             echo $project['path'] . '<br />';
         }
 
-        die();
-
-        // $this->viewData['projects'] =
+        $this->viewData['projects'] = $projects;
 
 		$this->viewOpts['page']['layout']  = 'default';
         $this->viewOpts['page']['content'] = 'home/index';
