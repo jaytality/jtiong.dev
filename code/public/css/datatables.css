@@ -1,0 +1,23 @@
+.dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter, .dataTables_wrapper .dataTables_info, .dataTables_wrapper .dataTables_processing, .dataTables_wrapper .dataTables_paginate {
+    color: #777;
+}
+
+table.dataTable tbody tr {
+    background-color: #333;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    color: #777 !important;
+}
+
+.dataTables_wrapper .dataTables_length select {
+    border: 1px solid #555;
+    background-color: #333;
+    color: #777 !important;
+}
+
+.dataTables_wrapper .dataTables_filter input {
+    border: 1px solid #555;
+    background-color: #333;
+    color: #777 !important;
+}
