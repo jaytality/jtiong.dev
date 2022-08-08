@@ -26,7 +26,7 @@ class HomeController extends Controller
         if ($offset == 0) {
             $commits = R::find('commits', ' ORDER BY time DESC LIMIT 50');
         } else {
-            $commits = R::find('commits', ' ORDER BY time DESC OFFSET ' . $offset . ' LIMIT 50');
+            $commits = R::find('commits', ' ORDER BY time DESC LIMIT 50 OFFSET ' . $offset );
         }
 
         $this->viewData['commits'] = $commits;
