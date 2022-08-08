@@ -24,6 +24,13 @@
                             <a href="<?=($i == 1) ? '/' : '/' . $i?>" class="btn btn-sm btn-danger<?=$page == $i ? ' btn-light' : ''?>"><?='&nbsp;&nbsp;' . $i . '&nbsp;&nbsp;'?></a>
                         <?php
                     }
+                } else if ($page <= $end - 5) {
+                    // for the LAST 5 pages
+                } else {
+                    // for the MIDDLE
+                    ?>
+                        <button class="btn btn-sm btn-danger" disabled>&nbsp;&nbsp;...&nbsp;&nbsp;</button>
+                    <?php
                 }
 
                 // show an extender placeholder if we have MANY pages
