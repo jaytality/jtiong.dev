@@ -15,21 +15,25 @@
     <div class="row">
         <div class="col-md-9">
             <!-- page button navigation -->
-            <a href="/" class="btn btn-danger<?=$page == 0 ? ' btn-light' : ''?>">&nbsp;&nbsp;1&nbsp;&nbsp;</a>
+            <a href="/" class="btn btn-sm btn-danger<?=$page == 0 ? ' btn-light' : ''?>">&nbsp;&nbsp;1&nbsp;&nbsp;</a>
             <?php
-                for ($i = 2; $i <= 5; $i++) {
-                    ?>
-                        <a href="<?=($i == 1) ? '/' : '/' . $i?>" class="btn btn-danger<?=$page == $i ? ' btn-light' : ''?>"><?='&nbsp;&nbsp;' . $i . '&nbsp;&nbsp;' . $here?></a>
-                    <?php
+                // for the FIRST 5 pages
+                if ($page < 5) {
+                    for ($i = 2; $i <= 5; $i++) {
+                        ?>
+                            <a href="<?=($i == 1) ? '/' : '/' . $i?>" class="btn btn-sm btn-danger<?=$page == $i ? ' btn-light' : ''?>"><?='&nbsp;&nbsp;' . $i . '&nbsp;&nbsp;'?></a>
+                        <?php
+                    }
                 }
 
+                // show an extender placeholder if we have MANY pages
                 if ($end > 5) {
-                    echo '... ...';
                     ?>
-                        <a href="/<?=$end?>" class="btn btn-danger"><?='&nbsp;&nbsp;' . $end . '&nbsp;&nbsp;'?></a>
+                        <button class="btn btn-sm btn-danger" disabled>&nbsp;&nbsp;...&nbsp;&nbsp;</button>
                     <?php
                 }
             ?>
+            <a href="/<?=$end?>" class="btn btn-sm btn-danger"><?='&nbsp;&nbsp;' . $end . '&nbsp;&nbsp;'?></a>
             <br />
             <br />
         </div>
