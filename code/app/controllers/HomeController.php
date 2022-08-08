@@ -16,8 +16,8 @@ class HomeController extends Controller
 {
     function index($page = 0)
     {
-        $offset = $page * 50;
-        $commits = R::find('commits', ' ORDER BY time DESC OFFSET ' . $offset . ' LIMIT 50');
+        $offset = $page * 50 == 0 ? '' : ' OFFSET ' . $offset;
+        $commits = R::find('commits', ' ORDER BY time DESC' . $offset . ' LIMIT 50');
 
         $this->viewData['commits'] = $commits;
         $this->viewData['page']    = $page;
