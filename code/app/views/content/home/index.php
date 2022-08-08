@@ -19,10 +19,11 @@
             <?php
                 for ($i = 1; $i <= $totalPages; $i++) {
                     ?>
-                        <a href="<?=($i == 1) ? '/' : '/' . $i?>" class="btn btn-primary<?=$page == $i ? ' btn-light' : ''?>"><?=$i?></a>
+                        <a href="<?=($i == 1) ? '/' : '/' . $i?>" class="btn btn-primary<?=$page == $i ? ' btn-light' : ''?>"><?=$page . ':' . $i?></a>
                     <?php
                 }
             ?>
+            <br />
         </div>
     </div>
     <div class="row">
@@ -59,7 +60,7 @@
             <?php
                 for ($i = 1; $i <= $totalPages; $i++) {
                     ?>
-                        <a href="<?=$page == 0 ? '/' : '/' . $page?>" class="btn btn-primary"><?=$page + 1?></a>
+                        <a href="<?=($i == 1) ? '/' : '/' . $i?>" class="btn btn-primary<?=$page == $i ? ' btn-light' : ''?>"><?=$i?></a>
                     <?php
                 }
             ?>
