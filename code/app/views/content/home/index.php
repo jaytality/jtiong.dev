@@ -15,18 +15,18 @@
     <div class="row">
         <div class="col-md-9">
             <!-- page button navigation -->
-            <a href="/" class="btn btn-danger<?=$page == 0 ? ' btn-light' : ''?>"> 1 </a>
+            <a href="/" class="btn btn-danger<?=$page == 0 ? ' btn-light' : ''?>">&nbsp;&nbsp;1&nbsp;&nbsp;</a>
             <?php
                 for ($i = 2; $i <= 5; $i++) {
                     ?>
-                        <a href="<?=($i == 1) ? '/' : '/' . $i?>" class="btn btn-danger<?=$page == $i ? ' btn-light' : ''?>"><?=' ' . $i . ' '?></a>
+                        <a href="<?=($i == 1) ? '/' : '/' . $i?>" class="btn btn-danger<?=$page == $i ? ' btn-light' : ''?>"><?='&nbsp;&nbsp;' . $i . '&nbsp;&nbsp;' . $here?></a>
                     <?php
                 }
 
                 if ($end > 5) {
                     echo '... ...';
                     ?>
-                        <a href="/<?=$end?>" class="btn btn-danger"><?=' ' . $end . ' '?></a>
+                        <a href="/<?=$end?>" class="btn btn-danger"><?='&nbsp;&nbsp;' . $end . '&nbsp;&nbsp;'?></a>
                     <?php
                 }
             ?>
