@@ -35,7 +35,7 @@ class HomeController extends Controller
         $this->viewData['commits'] = $commits;
 
         // navigation variables
-        $this->viewData['here']    = $page;
+        $this->viewData['here']    = $page + 1;
         $this->viewData['from']    = 0;
         $this->viewData['to']      = 0;
         $this->viewData['end']     = $totalPages;
