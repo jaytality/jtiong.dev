@@ -14,6 +14,7 @@
     <!-- commit messages -->
     <div class="row">
         <div class="col-md-9">
+            <!-- page button navigation -->
             <a href="/" class="btn btn-danger<?=$page == 0 ? ' btn-light' : ''?>"> 1 </a>
             <?php
                 for ($i = 2; $i <= 5; $i++) {
@@ -22,10 +23,10 @@
                     <?php
                 }
 
-                if ($totalPages > 5) {
+                if ($end > 5) {
                     echo '... ...';
                     ?>
-                        <a href="/<?=$totalPages?>" class="btn btn-danger"><?=' ' . $totalPages . ' '?></a>
+                        <a href="/<?=$end?>" class="btn btn-danger"><?=' ' . $end . ' '?></a>
                     <?php
                 }
             ?>
@@ -33,7 +34,7 @@
             <br />
         </div>
         <div class="col-md-3">
-
+            <!-- prev/next navigation -->
         </div>
     </div>
     <div class="row">
@@ -68,7 +69,7 @@
     <div class="row">
         <div class="col-md-12">
             <?php
-                for ($i = 1; $i <= $totalPages; $i++) {
+                for ($i = 1; $i <= $end; $i++) {
                     ?>
                         <a href="<?=($i == 1) ? '/' : '/' . $i?>" class="btn btn-danger<?=$page == $i ? ' btn-light' : ''?>"><?=$i?></a>
                     <?php
