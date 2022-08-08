@@ -1,6 +1,4 @@
 <?php
-    $totalPages = R::count('commits') / 50;
-    $totalPages = (int)$totalPages;
 ?>
 
 <br />
@@ -15,20 +13,27 @@
 
     <!-- commit messages -->
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-9">
+            <a href="/" class="btn btn-danger<?=$page == 0 ? ' btn-light' : ''?>"> 1 </a>
             <?php
-                if ($page == 0) {
-                    $page = 1;
+                for ($i = 2; $i <= 5; $i++) {
+                    ?>
+                        <a href="<?=($i == 1) ? '/' : '/' . $i?>" class="btn btn-danger<?=$page == $i ? ' btn-light' : ''?>"><?=' ' . $i . ' '?></a>
+                    <?php
                 }
 
-                for ($i = 1; $i <= $totalPages; $i++) {
+                if ($totalPages > 5) {
+                    echo '... ...';
                     ?>
-                        <a href="<?=($i == 1) ? '/' : '/' . $i?>" class="btn btn-danger<?=$page == $i ? ' btn-light' : ''?>"><?=$i?></a>
+                        <a href="/<?=$totalPages?>" class="btn btn-danger"><?=' ' . $totalPages . ' '?></a>
                     <?php
                 }
             ?>
             <br />
             <br />
+        </div>
+        <div class="col-md-3">
+
         </div>
     </div>
     <div class="row">
