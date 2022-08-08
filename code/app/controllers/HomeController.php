@@ -8,7 +8,7 @@ use \spark\Core\Controller as Controller;
 
 use \spark\Models\HomeModel;
 
-use \spark\Helpers\Curl;
+use \spark\Helpers\Time;
 
 use \R as R;
 

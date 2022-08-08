@@ -20,9 +20,10 @@
                 <tbody>
                     <?php
                         foreach ($commits as $commit) {
+                            $time = new Time;
                             ?>
                                 <tr>
-                                    <td><?=date('d/M/Y H:i:s', $commit['time'])?></td>
+                                    <td><?=$time->niceOutput($commit['time'])?></td>
                                     <td>
                                         <strong><?=$commit['project'] . ' / ' . $commit['branch']?></strong>
                                         <p><?=$commit['title']?></p>
