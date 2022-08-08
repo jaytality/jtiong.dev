@@ -16,11 +16,13 @@ class HomeController extends Controller
 {
     function index($page = 0)
     {
+        $this->viewData['page'] = $page;
+
+        $page = $page - 1;
         $offset = $page * 50 == 0 ? '' : ' OFFSET ' . $offset;
         $commits = R::find('commits', ' ORDER BY time DESC' . $offset . ' LIMIT 50');
 
         $this->viewData['commits'] = $commits;
-        $this->viewData['page']    = $page;
 
 		$this->viewOpts['page']['layout']  = 'default';
         $this->viewOpts['page']['content'] = 'home/index';
