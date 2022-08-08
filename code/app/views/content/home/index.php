@@ -16,7 +16,11 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            commit messages will go here
+            <pre>
+                <?php
+                    print_r($projects);
+                ?>
+            </pre>
         </div>
     </div>
     <div class="row">
