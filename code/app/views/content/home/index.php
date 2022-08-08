@@ -19,7 +19,7 @@
             <?php
                 for ($i = 1; $i <= $totalPages; $i++) {
                     ?>
-                        <a href="<?=$page == 0 ? '/' : '/' . $page?>" class="btn btn-primary"><?=$i?></a>
+                        <a href="<?=$page == 0 ? '/' : '/' . $i?>" class="btn btn-primary"><?=$i?></a>
                     <?php
                 }
             ?>
