@@ -23,11 +23,17 @@
                             $time = new \spark\Helpers\Time;
                             ?>
                                 <tr>
-                                    <td><?=$time->niceOutput($commit['time'])?></td>
                                     <td>
-                                        <strong><?=$commit['project'] . ' / ' . $commit['branch']?></strong>
-                                        <p><?=$commit['title']?></p>
-                                        <small class="text-muted"><?=$commit['hash']?></small>
+                                        <strong class="text-warning">Johnathan</strong>
+                                        <br />
+                                        <small class="text-muted"><?=$time->niceOutput($commit['time'])?></small>
+                                    </td>
+                                    <td>
+                                        <span style="font-size: 1.1rem; ">
+                                            <strong class="text-success"><?=$commit['project']?></strong> / <strong class="text-info"><?=$commit['branch']?></strong>
+                                            <strong class="text-muted">#<?=$commit['hash']?></strong>
+                                        </span>
+                                        <p style="color: #ccc; "><?=$commit['title']?></p>
                                     </td>
                                 </tr>
                             <?php
