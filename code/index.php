@@ -5,6 +5,8 @@
  * @copyright 2016-09-01 eLeague Pty Ltd
  */
 
+die("coming soon!");
+
 session_start();
 
 // root constant
