@@ -33,7 +33,9 @@ R::ext('xdispense', function ($type) {
     return R::getRedBean()->dispense($type);
 });
 
-// echo R::testConnection() ? 'connected to the DB' : 'not connected to the DB'; die();
+if(!R::testConnection()) {
+    die("Could not connect to DB");
+}
 
 // @todo some sort of multithreaded execution of cron task files
 
