@@ -11,7 +11,6 @@ services:
     container_name: jtiong.dev
     volumes:
       - ../code:/var/www/html
-      - ../data/uploads:/var/www/html/uploads
       - ./php.ini:/usr/local/etc/php/conf.d/php.ini
       - ./vhost.conf:/etc/apache2/sites-available/000-default.conf
       - ../data/logs/error.log:/var/www/error.log
