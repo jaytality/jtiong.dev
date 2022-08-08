@@ -32,13 +32,15 @@ class HomeController extends Controller
         $totalPages = R::count('commits') / 50;
         $totalPages = (int)$totalPages;
 
-        $this->viewData['commits'] = $commits;
+        // calculate the display - we always show the FIRST and LAST pages
+        // followed by a "..." "page-1" "page" "page+1" "..."
 
         // navigation variables
         $this->viewData['here']    = $page + 1;
         $this->viewData['from']    = 0;
         $this->viewData['to']      = 0;
         $this->viewData['end']     = $totalPages;
+        $this->viewData['commits'] = $commits;
 
 		$this->viewOpts['page']['layout']  = 'default';
         $this->viewOpts['page']['content'] = 'home/index';
