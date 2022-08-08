@@ -22,7 +22,7 @@ foreach ($projects as $project) {
                 $entry['branch']  = $branch['name'];
                 $entry['hash']    = $commit['id'];
                 $entry['title']   = $commit['title'];
-                $entry['created'] = $commit['created_at'];
+                $entry['created'] = strtotime($commit['created_at']);
                 R::store($entry);
             }
         }
