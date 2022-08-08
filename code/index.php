@@ -5,6 +5,11 @@
  * @copyright 2016-09-01 eLeague Pty Ltd
  */
 
+// SETUP error logging
+// error_reporting(E_ERROR | E_WARNING | E_PARSE);
+ini_set('log_errors', 1);
+ini_set('display_errors', 1);
+
 die("coming soon!");
 
 session_start();
@@ -31,11 +36,6 @@ R::ext('xdispense', function ($type) {
 // echo R::testConnection() ? 'connected to the DB' : 'not connected to the DB'; die();
 
 $base = new \spark\Core\Base();
-
-// SETUP error logging
-// error_reporting(E_ERROR | E_WARNING | E_PARSE);
-ini_set('log_errors', 1);
-ini_set('display_errors', 1);
 
 // SITE TIMEZONE
 date_default_timezone_set('Australia/Sydney');
