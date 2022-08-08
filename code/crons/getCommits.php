@@ -25,14 +25,15 @@ foreach ($projects as $project) {
         $commits = json_decode($commits, true);
 
         foreach ($commits as $commit) {
-            $entryCheck = R::findOne('commits', ' hash = ?', [ $commit['id'] ]);
+            $entryCheck = R::findOne('commits', ' fullhash = ?', [ $commit['id'] ]);
             if ($entryCheck == null) {
                 $entry = R::xdispense('commits');
-                $entry['time']    = strtotime($commit['created_at']);
-                $entry['project'] = $project['path'];
-                $entry['branch']  = $branch['name'];
-                $entry['hash']    = $commit['short_id'];
-                $entry['title']   = $commit['title'];
+                $entry['time']     = strtotime($commit['created_at']);
+                $entry['project']  = $project['path'];
+                $entry['branch']   = $branch['name'];
+                $entry['hash']     = $commit['short_id'];
+                $entry['fullhash'] = $commit['id'];
+                $entry['title']    = $commit['title'];
                 R::store($entry);
             }
         }
