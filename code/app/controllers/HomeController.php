@@ -16,10 +16,8 @@ class HomeController extends Controller
 {
     function index()
     {
-        // $this->viewData['posts'] = BlogModel::getPosts(3);
-        // $this->viewData['servers'] = GameModel::getServersInfo();
-
-        $projects = Curl::get('https://gitlab.jtiong.dev/api/v4/projects?private_token=' . getConfig('gitlab.token'));
+        $curl = new Curl;
+        $projects = $curl->get('https://gitlab.jtiong.dev/api/v4/projects?private_token=' . getConfig('gitlab.token'));
         $this->viewData['projects'] = json_decode($projects, true);
 
 		$this->viewOpts['page']['layout']  = 'default';
