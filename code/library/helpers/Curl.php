@@ -20,10 +20,9 @@ class curl
      * get request to a given $url
      *
      * @param string $url
-     * @param string $token
      * @return void
      */
-    public function get($url, $token)
+    public function get($url)
     {
         $curl = curl_init($url);
         curl_setopt($curl, CURLOPT, $url);
