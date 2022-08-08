@@ -18,7 +18,7 @@
         <div class="col-md-12">
             <pre>
                 <?php
-                    print_r($projects);
+                    print_r($commits);
                 ?>
             </pre>
         </div>

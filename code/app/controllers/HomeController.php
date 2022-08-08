@@ -25,9 +25,11 @@ class HomeController extends Controller
         // for each project...
         foreach ($projects as $project) {
             $branches = $curl->get('https://gitlab.jtiong.dev/api/v4/projects/' . $project['id'] . '/repository/branches?private_token=' . getConfig('gitlab.token'));
+            $branches = json_decode($branches, true);
 
             foreach ($branches as $branch) {
                 $commits = $curl->get('https://gitlab.jtiong.dev/api/v4/projects/' . $project['id'] . '/repository/commits?private_token=' . getConfig('gitlab.token')) . '&ref_name=' . $branch['name'];
+                $commits = json_decode($commits, true);
 
                 foreach ($commits as $commit) {
                     array_push($this->viewData['commits'], [
