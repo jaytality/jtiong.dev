@@ -20,7 +20,7 @@
                 <tbody>
                     <?php
                         foreach ($commits as $commit) {
-                            $time = new Time;
+                            $time = new \spark\Helpers\Time;
                             ?>
                                 <tr>
                                     <td><?=$time->niceOutput($commit['time'])?></td>
