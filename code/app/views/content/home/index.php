@@ -18,8 +18,8 @@
             <a href="/" class="btn btn-sm btn-danger<?=$page == 0 ? ' btn-light' : ''?>">&nbsp;&nbsp;1&nbsp;&nbsp;</a>
             <?php
                 // for the FIRST 5 pages
-                if ($page < 5) {
-                    for ($i = 2; $i <= 5; $i++) {
+                if ($page <= 5) {
+                    for ($i = 2; $i < $end; $i++) {
                         ?>
                             <a href="<?=($i == 1) ? '/' : '/' . $i?>" class="btn btn-sm btn-danger<?=$page == $i ? ' btn-light' : ''?>"><?='&nbsp;&nbsp;' . $i . '&nbsp;&nbsp;'?></a>
                         <?php
@@ -31,9 +31,12 @@
                     ?>
                         <button class="btn btn-sm btn-danger" disabled>&nbsp;&nbsp;...&nbsp;&nbsp;</button>
                     <?php
+                } else {
+                    ?>
+                        <a href="/<?=$end?>" class="btn btn-sm btn-danger"><?='&nbsp;&nbsp;' . $end . '&nbsp;&nbsp;'?></a>
+                    <?php
                 }
             ?>
-            <a href="/<?=$end?>" class="btn btn-sm btn-danger"><?='&nbsp;&nbsp;' . $end . '&nbsp;&nbsp;'?></a>
             <br />
             <br />
         </div>
