@@ -8,14 +8,15 @@ use \spark\Core\Controller as Controller;
 
 use \spark\Models\HomeModel;
 
+use \spark\Helpers\Time;
+
 use \R as R;
 
 class HomeController extends Controller
 {
     function index()
     {
-        // $this->viewData['posts'] = BlogModel::getPosts(3);
-        // $this->viewData['servers'] = GameModel::getServersInfo();
+        $this->viewData['commits'] = R::find('commits', ' ORDER BY time DESC');
 
 		$this->viewOpts['page']['layout']  = 'default';
         $this->viewOpts['page']['content'] = 'home/index';

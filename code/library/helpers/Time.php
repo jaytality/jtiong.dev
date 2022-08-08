@@ -46,9 +46,9 @@ class Time
             } elseif ($days < 6) {
                 return ($days == 1) ? "1 day ago" : "$days days ago";
             } elseif ($years >= 1) {
-            	return date('d M y', $timestamp);
+            	return date('d M y (H:i:s)', $timestamp);
             } else {
-            	return date('d M', $timestamp);
+            	return date('d M (H:i:s)', $timestamp);
             }
         } else {
             $seconds      = abs($seconds);

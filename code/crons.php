@@ -14,6 +14,17 @@
  * @copyright 2022 Johnathan Tiong
  */
 
+// root constant
+define('ROOT', dirname(__FILE__));
+
+// file location constants
+define('ctrlr', ROOT . '/app/controllers');
+define('model', ROOT . '/app/models');
+define('views', ROOT . '/app/views');
+
+// autoload composer
+require 'vendor/autoload.php';
+
 require ROOT . '/config.php';
 require ROOT . '/R.php';
 
@@ -21,6 +32,10 @@ R::setup(getConfig('database.type') . ':host=' . getConfig('database.host') . ';
 R::ext('xdispense', function ($type) {
     return R::getRedBean()->dispense($type);
 });
+
+if(!R::testConnection()) {
+    die("Could not connect to DB");
+}
 
 // @todo some sort of multithreaded execution of cron task files
 
