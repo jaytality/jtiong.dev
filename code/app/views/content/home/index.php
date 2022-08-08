@@ -16,11 +16,24 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <pre>
-                <?php
-                    print_r($commits);
-                ?>
-            </pre>
+            <table class="table">
+                <tbody>
+                    <?php
+                        foreach ($commits as $commit) {
+                            ?>
+                                <tr>
+                                    <td><?=date('d/M/Y H:i:s', $commit['time'])?></td>
+                                    <td>
+                                        <strong><?=$commit['project'] . ' / ' . $commit['branch']?></strong>
+                                        <p><?=$commit['title']?></p>
+                                        <small class="text-muted"><?=$commit['hash']?></small>
+                                    </td>
+                                </tr>
+                            <?php
+                        }
+                    ?>
+                </tbody>
+            </table>
         </div>
     </div>
     <div class="row">
