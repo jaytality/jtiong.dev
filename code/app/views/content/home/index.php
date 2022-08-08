@@ -1,3 +1,8 @@
+<?php
+    $totalPages = R::count('commits') / 50;
+    $totalPages = (int)$totalPages;
+?>
+
 <br />
 
 <div class="container">
@@ -11,7 +16,13 @@
     <!-- commit messages -->
     <div class="row">
         <div class="col-md-12">
-            pagination
+            <?php
+                for ($i = 1; $i <= $totalPages; $i++) {
+                    ?>
+                        <a href="<?=$page == 0 ? '/' : '/' . $page?>" class="btn btn-primary"><?=$page + 1?></a>
+                    <?php
+                }
+            ?>
         </div>
     </div>
     <div class="row">
@@ -45,7 +56,13 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            pagination
+            <?php
+                for ($i = 1; $i <= $totalPages; $i++) {
+                    ?>
+                        <a href="<?=$page == 0 ? '/' : '/' . $page?>" class="btn btn-primary"><?=$page + 1?></a>
+                    <?php
+                }
+            ?>
         </div>
     </div>
 </div>

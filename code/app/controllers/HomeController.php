@@ -14,11 +14,13 @@ use \R as R;
 
 class HomeController extends Controller
 {
-    function index()
+    function index($page = 0)
     {
-        $commits = R::find('commits', ' ORDER BY time DESC');
-        $this->viewData['commits'] = $commits;
+        $offset = $page * 50;
+        $commits = R::find('commits', ' ORDER BY time DESC OFFSET ' . $offset . ' LIMIT 50');
 
+        $this->viewData['commits'] = $commits;
+        $this->viewData['page']    = $page;
 
 		$this->viewOpts['page']['layout']  = 'default';
         $this->viewOpts['page']['content'] = 'home/index';
