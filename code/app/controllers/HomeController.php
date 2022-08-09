@@ -16,6 +16,8 @@ class HomeController extends Controller
 {
     function index($page = 0)
     {
+        $limit = 50; // this is the number of commit messages to show per page
+
         $this->viewData['page'] = $page;
 
         if ($page > 0) {
@@ -25,11 +27,11 @@ class HomeController extends Controller
         $offset = $page * 50;
 
         if ($offset == 0) {
-            $commits = R::find('commits', ' ORDER BY time DESC LIMIT 50');
+            $commits = R::find('commits', ' ORDER BY time DESC LIMIT '. $limit);
         } else {
-            $commits = R::find('commits', ' ORDER BY time DESC LIMIT 50 OFFSET ' . $offset );
+            $commits = R::find('commits', ' ORDER BY time DESC LIMIT ' . $limit . ' OFFSET ' . $offset );
         }
-        $totalPages = R::count('commits') / 50;
+        $totalPages = R::count('commits') / $limit;
         $totalPages = (int)$totalPages;
 
         // calculate the display - we always show the FIRST and LAST pages
