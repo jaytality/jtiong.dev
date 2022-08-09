@@ -20,18 +20,8 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
             <div class="container">
-                <a class="navbar-brand" href="/"><img src="/public/img/logo.svg" alt="" style="height: 64px; "></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainmenu" aria-controls="mainmenu" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <?php
-                $viewOpts['page']['section'] = empty($viewOpts['page']['section']) ? '' : $viewOpts['page']['section'];
-                ?>
-
-                <div class="collapse navbar-collapse" id="mainmenu">
-                    J T I O N G . D E V
-                </div>
+                <a class="navbar-brand" href="/"><img src="/public/img/logo.svg" alt="" style="height: 32px; "></a>
+                J T I O N G . D E V
             </div>
         </nav>
 
@@ -52,7 +42,7 @@
     </main>
 
     <footer class="footer mt-auto py-3">
-        <div class="container">
+        <div class="container text-center">
             <hr>
             <small class="text-muted">Copyright &copy; Johnathan Tiong, 2022 - <?=date('Y')?>. All Rights Reserved.</small>
         </div>
