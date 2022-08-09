@@ -40,7 +40,7 @@
         <br />
         <br />
     </div>
-    <div class="col-md-3">
+    <div class="col-md-3 text-right">
         <!-- prev/next navigation -->
         <?php
             $next = 0;
