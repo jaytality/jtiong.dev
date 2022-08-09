@@ -30,10 +30,8 @@ class HomeController extends Controller
         // if we're not on the first page
         if ($page >= 1) {
             $page = $page - 1;
-        }
-
-        if ($page >= 2) {
-            //
+            $from = $page - 1;
+            $to = $page + 3;
         }
 
         $offset = $page * $limit;
