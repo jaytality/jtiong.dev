@@ -56,7 +56,7 @@
                 $next = null;
             }
         ?>
-        <a href="/<?=$prev?>" class="btn btn-sm btn-danger"<?=$prev == null ? ' disabled' : ''?>>&nbsp;&nbsp;&larr;&nbsp;&nbsp;</a>
-        <a href="/<?=$next?>" class="btn btn-sm btn-danger"<?=$next == null ? ' disabled' : ''?>>&nbsp;&nbsp;&rarr;&nbsp;&nbsp;</a>
+        <a href="/<?=$prev?>" class="btn btn-sm btn-danger"<?=$prev == null ? ' disabled' : ''?>>&nbsp;&nbsp;<&nbsp;&nbsp;</a>
+        <a href="/<?=$next?>" class="btn btn-sm btn-danger"<?=$next == null ? ' disabled' : ''?>>&nbsp;&nbsp;>&nbsp;&nbsp;</a>
     </div>
 </div>
