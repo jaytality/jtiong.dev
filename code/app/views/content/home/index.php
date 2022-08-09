@@ -8,6 +8,10 @@
     <div class="row">
         <div class="col-md-12">
             <div class="barchart"></div>
+
+            <?php
+                echo '<pre>' . print_r($statistics); . '</pre>';
+            ?>
         </div>
     </div>
 

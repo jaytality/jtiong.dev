@@ -52,29 +52,36 @@ class HomeController extends Controller
             $commits = R::find('commits', ' ORDER BY time DESC LIMIT ' . $limit . ' OFFSET ' . $offset );
         }
 
+        //
+        // BUILDING COMMIT STATS GRAPH
+        //
+        $fullCommits = R::find('commits', ' ORDER BY time DESC');
         $oldest = $homeModel->getOldestCommit();
         $newest = $homeModel->getNewestCommit();
 
-        echo $oldest['time'] . '<br />';
-        echo $newest['time'] . '<br />';
-
-        // get oldest commit's month and year
         $commitStart = $month = strtotime(date('Y-m-d', $oldest['time']));
         $commitEnd   = strtotime(date('Y-m-d', $newest['time']));
 
+        // build the statistics array
+        $statistics = [];
         while($month < $commitEnd) {
-            echo date('Y-m', $month) . '<br />';
+            $statistics[date('F Y', $month)] = 0;
             $month = strtotime("+1 month", $month);
         }
 
+        foreach ($fullCommits as $commit) {
+            $statistics[date('F Y', $commit['time'])] += 1;
+        }
+
         // navigation variables
-        $this->viewData['from']    = $from;
-        $this->viewData['to']      = $to;
-        $this->viewData['end']     = $totalPages - 1;
-        $this->viewData['commits'] = $commits;
-        $this->viewData['page']    = $page;
-        $this->viewData['oldest']  = $oldest;
-        $this->viewData['newest']  = $newest;
+        $this->viewData['from']       = $from;
+        $this->viewData['to']         = $to;
+        $this->viewData['end']        = $totalPages - 1;
+        $this->viewData['commits']    = $commits;
+        $this->viewData['page']       = $page;
+        $this->viewData['oldest']     = $oldest;
+        $this->viewData['newest']     = $newest;
+        $this->viewData['statistics'] = $statistics;
 
 		$this->viewOpts['page']['layout']  = 'default';
         $this->viewOpts['page']['content'] = 'home/index';
