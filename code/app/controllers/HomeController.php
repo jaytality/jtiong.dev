@@ -29,7 +29,7 @@ class HomeController extends Controller
 
         // if we're not on the first page
         if ($page >= 1) {
-            $from = $page - 1;
+            $from = $page - 2;
             $to = $page + 3;
             $page = $page - 1;
         }
