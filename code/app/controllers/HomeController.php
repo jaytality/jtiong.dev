@@ -16,7 +16,7 @@ class HomeController extends Controller
 {
     function index($page = 0)
     {
-        $limit = 50;    // this is the number of commit messages to show per page
+        $limit = 25;    // this is the number of commit messages to show per page
         $from  = 0;     // starting visible pagination number (not including 1 and ...)
         $to    = 0;     // last visible pagination number (not including end and ...)
 
