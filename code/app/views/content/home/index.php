@@ -7,7 +7,11 @@
     <!-- commit graph -->
     <div class="row">
         <div class="col-md-12">
-            commit graph here
+            commit graph
+            <br />
+            Page: <?=$page?><br />
+            Here: <?=$here?><br />
+            End: <?=$end?><br />
         </div>
     </div>
 
