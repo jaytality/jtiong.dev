@@ -72,7 +72,6 @@ class HomeController extends Controller
          */
 
         // navigation variables
-        $this->viewData['here']    = $page + 1;
         $this->viewData['from']    = $from;
         $this->viewData['to']      = $to;
         $this->viewData['end']     = $totalPages;
