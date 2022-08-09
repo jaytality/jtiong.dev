@@ -48,10 +48,7 @@
                 // if there's more than 5 pages
                 if ($end > 5) {
                     for ($i = $from; $i <= $to; $i++) {
-                        if (
-                            $from == 1 ||
-                            $to == $end
-                        ) {
+                        if ($from <= 1) {
                             continue;
                         } else {
                             ?>
