@@ -11,6 +11,8 @@
             <br />
             Page: <?=$page?><br />
             Here: <?=$here?><br />
+            From: <?=$from?><br />
+            To: <?=$to?><br />
             End: <?=$end?><br />
         </div>
     </div>
