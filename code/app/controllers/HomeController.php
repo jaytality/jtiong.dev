@@ -6,7 +6,7 @@ namespace spark\Controllers;
 
 use \spark\Core\Controller as Controller;
 
-use \spark\Models\HomeModel;
+use \spark\Models\HomeModel as Model;
 
 use \spark\Helpers\Time;
 
