@@ -42,7 +42,7 @@
     </main>
 
     <footer class="footer mt-auto py-3">
-        <div class="container">
+        <div class="container text-center">
             <hr>
             <small class="text-muted">Copyright &copy; Johnathan Tiong, 2022 - <?=date('Y')?>. All Rights Reserved.</small>
         </div>
