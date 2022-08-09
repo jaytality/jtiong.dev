@@ -20,7 +20,9 @@ class HomeController extends Controller
         $from  = 0;     // starting visible pagination number (not including 1 and ...)
         $to    = 0;     // last visible pagination number (not including end and ...)
 
-        $this->viewData['page'] = $page;
+        // total number of pages in pagination
+        $totalPages = R::count('commits') / $limit;
+        $totalPages = ceil($totalPages);
 
         if (
             $page >= 0 ||
@@ -28,7 +30,9 @@ class HomeController extends Controller
         ) {
             $from = 2;
             $to = 5;
-        }
+        } else if (
+            $page >= $totalPages
+        )
 
         // if we're not on the first page
         /*
@@ -52,9 +56,6 @@ class HomeController extends Controller
         } else {
             $commits = R::find('commits', ' ORDER BY time DESC LIMIT ' . $limit . ' OFFSET ' . $offset );
         }
-        $totalPages = R::count('commits') / $limit;
-        $totalPages = (int)$totalPages;
-
         // calculate the display - we always show the FIRST and LAST pages
         // followed by a "..." "page-1" "page" "page+1" "..."
         /**
@@ -76,6 +77,7 @@ class HomeController extends Controller
         $this->viewData['to']      = $to;
         $this->viewData['end']     = $totalPages;
         $this->viewData['commits'] = $commits;
+        $this->viewData['page']    = $page;
 
 		$this->viewOpts['page']['layout']  = 'default';
         $this->viewOpts['page']['content'] = 'home/index';
