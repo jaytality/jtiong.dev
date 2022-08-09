@@ -8,11 +8,6 @@
     <div class="row">
         <div class="col-md-12">
             commit graph
-            <br />
-            Page: <?=$page?><br />
-            From: <?=$from?><br />
-            To: <?=$to?><br />
-            End: <?=$end?><br />
         </div>
     </div>
 
