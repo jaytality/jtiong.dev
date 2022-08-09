@@ -59,8 +59,8 @@ class HomeController extends Controller
         echo $newest['time'] . '<br />';
 
         // get oldest commit's month and year
-        $commitStart = $month = date('Y-m-d', $oldest['time']);
-        $commitEnd   = date('Y-m-d', $newest['time']);
+        $commitStart = $month = strtotime(date('Y-m-d', $oldest['time']));
+        $commitEnd   = strtotime(date('Y-m-d', $newest['time']));
 
         while($month < $commitEnd) {
             echo date('Y-m', $month) . '<br />';
