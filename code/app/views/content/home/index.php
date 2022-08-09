@@ -1,8 +1,3 @@
-<?php
-?>
-
-<br />
-
 <div class="container">
     <!-- commit graph -->
     <div class="row">

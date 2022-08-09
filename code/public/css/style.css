@@ -22,7 +22,7 @@ hr {
     display: flex;
     height: 100px;
     margin-top: 1rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 }
 
 .barchart > a {
@@ -46,6 +46,7 @@ hr {
         left: 4px;
         padding: 4px;
         background-color: rgba(0,0,0,.6);
+        color: #fff;
     }
 
 .barchart > a div {
