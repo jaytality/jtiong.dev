@@ -24,7 +24,7 @@ class HomeController extends Controller
             $page = $page - 1;
         }
 
-        $offset = $page * 50;
+        $offset = $page * $limit;
 
         if ($offset == 0) {
             $commits = R::find('commits', ' ORDER BY time DESC LIMIT '. $limit);
