@@ -35,8 +35,8 @@ class HomeController extends Controller
             // current page is within the range of the last page
             $page >= $totalPages - 2
         ) {
-            $from = $page - 2;
-            $to = $totalPages -1;
+            $from = $totalPages - 5;
+            $to = $totalPages - 1;
         } else {
             $from = $page - 2;
             $to = $page + 2;
