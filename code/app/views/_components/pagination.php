@@ -2,7 +2,7 @@
 <hr />
 
 <div class="row">
-    <div class="col-md-9">
+    <div class="col-md-12">
         <!-- page button navigation -->
         <a href="/" class="btn btn-sm btn-danger<?=$page == 0 ? ' btn-light' : ''?>">&nbsp;&nbsp;1&nbsp;&nbsp;</a>
         <?php
@@ -39,24 +39,5 @@
         ?>
         <br />
         <br />
-    </div>
-    <div class="col-md-3 text-right">
-        <!-- prev/next navigation -->
-        <?php
-            $next = 0;
-            $prev = 0;
-
-            $prev = $page - 1;
-            if ($prev <= 0) {
-                $prev = null;
-            }
-
-            $next = $page + 1;
-            if ($page >= 10) {
-                $next = null;
-            }
-        ?>
-        <a href="/<?=$prev?>" class="btn btn-sm btn-danger"<?=$prev == null ? ' disabled' : ''?>>&nbsp;&nbsp;<&nbsp;&nbsp;</a>
-        <a href="/<?=$next?>" class="btn btn-sm btn-danger"<?=$next == null ? ' disabled' : ''?>>&nbsp;&nbsp;>&nbsp;&nbsp;</a>
     </div>
 </div>
