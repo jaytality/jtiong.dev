@@ -22,10 +22,6 @@
                 }
                 ?>
             </div>
-
-            <?php
-                echo '<pre>' . print_r($statistics) . '</pre>';
-            ?>
         </div>
     </div>
 

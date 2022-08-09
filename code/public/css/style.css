@@ -39,6 +39,15 @@ hr {
         background-color: rgba(231, 76, 60, 0.15);
     }
 
+    .barchart>a:hover:after {
+        content: attr(title);
+        position: absolute;
+        top: 4px;
+        left: 4px;
+        padding: 4px;
+        background-color: rgba(0,0,0,.6);
+    }
+
 .barchart > a div {
     background-color: rgba(231, 76, 60, 1);
     height: 0%;
