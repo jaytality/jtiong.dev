@@ -10,7 +10,7 @@
             <div class="barchart"></div>
 
             <?php
-                echo '<pre>' . print_r($statistics); . '</pre>';
+                echo '<pre>' . print_r($statistics) . '</pre>';
             ?>
         </div>
     </div>
