@@ -1,4 +1,6 @@
 
+<hr />
+
 <div class="row">
     <div class="col-md-9">
         <!-- page button navigation -->
@@ -40,5 +42,21 @@
     </div>
     <div class="col-md-3">
         <!-- prev/next navigation -->
+        <?php
+            $next = 0;
+            $prev = 0;
+
+            $prev = $page - 1;
+            if ($prev <= 0) {
+                $prev = null;
+            }
+
+            $next = $page + 1;
+            if ($page >= 10) {
+                $next = null;
+            }
+        ?>
+        <a href="/<?=$prev?>" class="btn btn-sm btn-danger"<?=$prev == null ? ' disabled' : ''?>>&nbsp;&nbsp;&larr;&nbsp;&nbsp;</a>
+        <a href="/<?=$next?>" class="btn btn-sm btn-danger"<?=$next == null ? ' disabled' : ''?>>&nbsp;&nbsp;&rarr;&nbsp;&nbsp;</a>
     </div>
 </div>
