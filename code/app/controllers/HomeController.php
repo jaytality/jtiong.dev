@@ -24,7 +24,7 @@ class HomeController extends Controller
 
         if (
             $page >= 0 ||
-            $page <= 3
+            $page <= 4
         ) {
             $from = 2;
             $to = 5;
