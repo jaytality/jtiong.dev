@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * getCommits
+ *
+ * fetch all the relevant commits that i've done
+ *
+ * @author Johnathan Tiong <johnathan.tiong@gmail.com>
+ * @copyright 2022 Johnathan Tiong
+ */
+
 function get($url)
 {
     $curl = curl_init($url);
@@ -11,6 +20,8 @@ function get($url)
 
     return $response;
 }
+
+// @todo I need to implement fetching the GitHub commits as well
 
 $projects = get('https://gitlab.jtiong.dev/api/v4/projects?private_token=' . getConfig('gitlab.token'));
 $projects = json_decode($projects, true);
