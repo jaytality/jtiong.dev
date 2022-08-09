@@ -22,23 +22,6 @@
             <!-- page button navigation -->
             <a href="/" class="btn btn-sm btn-danger<?=$page == 0 ? ' btn-light' : ''?>">&nbsp;&nbsp;1&nbsp;&nbsp;</a>
             <?php
-                /*
-                    if ($page <= 5) {
-                        for ($i = 2; $i < $end; $i++) {
-                            ?>
-                                <a href="<?=($i == 1) ? '/' : '/' . $i?>" class="btn btn-sm btn-danger<?=$page == $i ? ' btn-light' : ''?>"><?='&nbsp;&nbsp;' . $i . '&nbsp;&nbsp;'?></a>
-                            <?php
-                        }
-                    } else if ($page <= $end - 5) {
-                        // for the LAST 5 pages
-                    } else {
-                        // for the MIDDLE
-                        ?>
-                            <button class="btn btn-sm btn-danger" disabled>&nbsp;&nbsp;...&nbsp;&nbsp;</button>
-                        <?php
-                    }
-                */
-
                 if ($page > 4) {
                     ?>
                         <button class="btn btn-sm btn-danger" disabled>&nbsp;&nbsp;...&nbsp;&nbsp;</button>
