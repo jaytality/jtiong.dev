@@ -40,7 +40,7 @@
                     <?php
                 } else {
                     ?>
-                        <a href="/<?=$end?>" class="btn btn-sm btn-danger"><?='&nbsp;&nbsp;' . $end . '&nbsp;&nbsp;'?></a>
+                        <a href="/<?=$end?>" class="btn btn-sm btn-danger<?=$page == $end ? ' btn-light' : ''?>"><?='&nbsp;&nbsp;' . $end . '&nbsp;&nbsp;'?></a>
                     <?php
                 }
             ?>
