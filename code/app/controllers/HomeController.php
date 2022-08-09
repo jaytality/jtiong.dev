@@ -24,15 +24,23 @@ class HomeController extends Controller
         $totalPages = R::count('commits') / $limit;
         $totalPages = ceil($totalPages);
 
-        if (
+        if ( // if we're within the first 5 pages of the list...
             $page >= 0 ||
             $page <= 4
         ) {
+            // hard code the pages to be from 2 to 5
             $from = 2;
             $to = 5;
         } else if (
-            $page >= $totalPages
-        )
+            // current page is within the range of the last page
+            $page >= $totalPages - 2
+        ) {
+            $from = $page - 2;
+            $to = $totalPages -1;
+        } else {
+            $from = $page - 2;
+            $to = $page + 2;
+        }
 
         // if we're not on the first page
         /*
