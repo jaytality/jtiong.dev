@@ -22,17 +22,28 @@ class HomeController extends Controller
 
         $this->viewData['page'] = $page;
 
-        if ($page == 0) {
+        if (
+            $page >= 0 ||
+            $page <= 3
+        ) {
             $from = 2;
             $to = 5;
         }
 
         // if we're not on the first page
-        if ($page >= 1) {
+        /*
+        if ($page == 1) {
             $from = $page - 2;
             $to = $page + 2;
             $page = $page - 1;
         }
+
+        if ($page == 2) {
+            $from = $page - 2;
+            $to = $page + 2;
+            $page = $page - 1;
+        }
+        */
 
         $offset = $page * $limit;
 
