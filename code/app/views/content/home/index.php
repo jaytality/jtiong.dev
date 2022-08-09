@@ -45,7 +45,7 @@
                     for ($i = $from; $i <= $to; $i++) {
                         if (
                             $from == 1 ||
-                            $from == $end
+                            $to == $end
                         ) {
                             continue;
                         } else {
