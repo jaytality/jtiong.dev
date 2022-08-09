@@ -16,7 +16,7 @@ class HomeController extends Controller
 {
     function index($page = 0)
     {
-        $limit = 50; // this is the number of commit messages to show per page
+        $limit = 10; // this is the number of commit messages to show per page
 
         $this->viewData['page'] = $page;
 
