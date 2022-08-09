@@ -40,6 +40,11 @@
                     }
                 */
 
+                if ($here > 4) {
+                    ?>
+                        <button class="btn btn-sm btn-danger" disabled>&nbsp;&nbsp;...&nbsp;&nbsp;</button>
+                    <?php
+                }
                 // if there's more than 5 pages
                 if ($end > 5) {
                     for ($i = $from; $i <= $to; $i++) {
