@@ -42,21 +42,6 @@ class HomeController extends Controller
             $to = $page + 2;
         }
 
-        // if we're not on the first page
-        /*
-        if ($page == 1) {
-            $from = $page - 2;
-            $to = $page + 2;
-            $page = $page - 1;
-        }
-
-        if ($page == 2) {
-            $from = $page - 2;
-            $to = $page + 2;
-            $page = $page - 1;
-        }
-        */
-
         $offset = $page * $limit;
 
         if ($offset == 0) {
@@ -64,26 +49,11 @@ class HomeController extends Controller
         } else {
             $commits = R::find('commits', ' ORDER BY time DESC LIMIT ' . $limit . ' OFFSET ' . $offset );
         }
-        // calculate the display - we always show the FIRST and LAST pages
-        // followed by a "..." "page-1" "page" "page+1" "..."
-        /**
-         * pagination
-         * logically it can look like
-         *
-         * 1 2 3 4 5 ... 9
-         * 1 [2] 3 4 5
-         * 1 2 [3] 4 5
-         *
-         * after page 3:
-         * 1 ... 3 [4] 5 ... 7
-         *
-         * so if there's more than 6 pages
-         */
 
         // navigation variables
         $this->viewData['from']    = $from;
         $this->viewData['to']      = $to;
-        $this->viewData['end']     = $totalPages;
+        $this->viewData['end']     = $totalPages - 1;
         $this->viewData['commits'] = $commits;
         $this->viewData['page']    = $page;
 
