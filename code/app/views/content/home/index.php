@@ -38,9 +38,12 @@
                             <?php
                         }
                     }
-                    ?>
-                        <button class="btn btn-sm btn-danger" disabled>&nbsp;&nbsp;...&nbsp;&nbsp;</button>
-                    <?php
+
+                    if ($to != $end) {
+                        ?>
+                            <button class="btn btn-sm btn-danger" disabled>&nbsp;&nbsp;...&nbsp;&nbsp;</button>
+                        <?php
+                    }
                 }
             ?>
             <a href="/<?=$end?>" class="btn btn-sm btn-danger<?=$page == $end ? ' btn-light' : ''?>"><?='&nbsp;&nbsp;' . $end . '&nbsp;&nbsp;'?></a>
