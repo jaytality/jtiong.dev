@@ -55,7 +55,7 @@ class HomeController extends Controller
         //
         // BUILDING COMMIT STATS GRAPH
         //
-        $fullCommits = R::find('commits', ' ORDER BY time DESC');
+        $fullCommits = R::find('commits', ' ORDER BY time ASC');
         $oldest = $homeModel->getOldestCommit();
         $newest = $homeModel->getNewestCommit();
 
@@ -68,6 +68,9 @@ class HomeController extends Controller
             $statistics[date('F Y', $month)] = 0;
             $month = strtotime("+1 month", $month);
         }
+
+        // always add current month too
+        $statistics[date('F Y')] = 0;
 
         foreach ($fullCommits as $commit) {
             $statistics[date('F Y', $commit['time'])] += 1;
