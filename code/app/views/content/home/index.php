@@ -21,23 +21,38 @@
             <!-- page button navigation -->
             <a href="/" class="btn btn-sm btn-danger<?=$page == 0 ? ' btn-light' : ''?>">&nbsp;&nbsp;1&nbsp;&nbsp;</a>
             <?php
-                // for the FIRST 5 pages
-                if ($page <= 5) {
-                    for ($i = 2; $i < $end; $i++) {
+                /*
+                    if ($page <= 5) {
+                        for ($i = 2; $i < $end; $i++) {
+                            ?>
+                                <a href="<?=($i == 1) ? '/' : '/' . $i?>" class="btn btn-sm btn-danger<?=$page == $i ? ' btn-light' : ''?>"><?='&nbsp;&nbsp;' . $i . '&nbsp;&nbsp;'?></a>
+                            <?php
+                        }
+                    } else if ($page <= $end - 5) {
+                        // for the LAST 5 pages
+                    } else {
+                        // for the MIDDLE
                         ?>
-                            <a href="<?=($i == 1) ? '/' : '/' . $i?>" class="btn btn-sm btn-danger<?=$page == $i ? ' btn-light' : ''?>"><?='&nbsp;&nbsp;' . $i . '&nbsp;&nbsp;'?></a>
+                            <button class="btn btn-sm btn-danger" disabled>&nbsp;&nbsp;...&nbsp;&nbsp;</button>
                         <?php
                     }
-                } else if ($page <= $end - 5) {
-                    // for the LAST 5 pages
-                } else {
-                    // for the MIDDLE
-                    ?>
-                        <button class="btn btn-sm btn-danger" disabled>&nbsp;&nbsp;...&nbsp;&nbsp;</button>
-                    <?php
-                }
+                */
 
-                // show an extender placeholder if we have MANY pages
+                /**
+                 * pagination
+                 * logically it can look like
+                 *
+                 * 1 2 3 4 5
+                 * 1 [2] 3 4 5
+                 * 1 2 [3] 4 5
+                 *
+                 * after page 3:
+                 * 1 ... 3 [4] 5 ... 7
+                 *
+                 * so if there's more than 6 pages
+                 */
+
+                // if there's more than 5 pages
                 if ($end > 5) {
                     ?>
                         <button class="btn btn-sm btn-danger" disabled>&nbsp;&nbsp;...&nbsp;&nbsp;</button>
