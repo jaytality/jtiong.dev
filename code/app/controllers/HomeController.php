@@ -25,7 +25,7 @@ class HomeController extends Controller
         $totalPages = ceil($totalPages);
 
         if ( // if we're within the first 5 pages of the list...
-            $page >= 0 ||
+            $page >= 0 &&
             $page <= 4
         ) {
             // hard code the pages to be from 2 to 5
