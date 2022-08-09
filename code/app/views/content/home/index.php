@@ -7,7 +7,21 @@
     <!-- commit graph -->
     <div class="row">
         <div class="col-md-12">
-            <div class="barchart"></div>
+            <div class="barchart">
+                <?php
+                foreach ($statistics as $stat => $count) {
+                    echo '<a href="#" title="' . $stat . ' - ' . $count . ' commits">';
+                    if ($count > 0) {
+                        // calculate a percentage - doesn't need to be super accurate
+                        $height = ($count / $highest) * 100;
+                        $height = ceil($height);
+
+                        echo '<div style="height: ' . $height . '%"></div>';
+                    }
+                    echo '</a>';
+                }
+                ?>
+            </div>
 
             <?php
                 echo '<pre>' . print_r($statistics) . '</pre>';

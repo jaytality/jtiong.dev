@@ -76,14 +76,21 @@ class HomeController extends Controller
             $statistics[date('F Y', $commit['time'])] += 1;
         }
 
+        // get the highestcommits for display calculations
+        $highestCommits = 0;
+        foreach ($statistics as $stat => $count) {
+            if ($count > $highestCommits) {
+                $highestCommits = $count;
+            }
+        }
+
         // navigation variables
         $this->viewData['from']       = $from;
         $this->viewData['to']         = $to;
         $this->viewData['end']        = $totalPages - 1;
         $this->viewData['commits']    = $commits;
         $this->viewData['page']       = $page;
-        $this->viewData['oldest']     = $oldest;
-        $this->viewData['newest']     = $newest;
+        $this->viewData['highest']    = $highestCommits;
         $this->viewData['statistics'] = $statistics;
 
 		$this->viewOpts['page']['layout']  = 'default';
