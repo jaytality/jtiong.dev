@@ -16,12 +16,24 @@ class HomeController extends Controller
 {
     function index($page = 0)
     {
-        $limit = 25; // this is the number of commit messages to show per page
+        $limit = 25;    // this is the number of commit messages to show per page
+        $from  = 0;     // starting visible pagination number (not including 1 and ...)
+        $to    = 0;     // last visible pagination number (not including end and ...)
 
         $this->viewData['page'] = $page;
 
-        if ($page > 0) {
+        if ($page == 0) {
+            $from = 2;
+            $to = 5;
+        }
+
+        // if we're not on the first page
+        if ($page >= 1) {
             $page = $page - 1;
+        }
+
+        if ($page >= 2) {
+            //
         }
 
         $offset = $page * $limit;
@@ -36,6 +48,19 @@ class HomeController extends Controller
 
         // calculate the display - we always show the FIRST and LAST pages
         // followed by a "..." "page-1" "page" "page+1" "..."
+        /**
+         * pagination
+         * logically it can look like
+         *
+         * 1 2 3 4 5 ... 9
+         * 1 [2] 3 4 5
+         * 1 2 [3] 4 5
+         *
+         * after page 3:
+         * 1 ... 3 [4] 5 ... 7
+         *
+         * so if there's more than 6 pages
+         */
 
         // navigation variables
         $this->viewData['here']    = $page + 1;

@@ -38,22 +38,13 @@
                     }
                 */
 
-                /**
-                 * pagination
-                 * logically it can look like
-                 *
-                 * 1 2 3 4 5
-                 * 1 [2] 3 4 5
-                 * 1 2 [3] 4 5
-                 *
-                 * after page 3:
-                 * 1 ... 3 [4] 5 ... 7
-                 *
-                 * so if there's more than 6 pages
-                 */
-
                 // if there's more than 5 pages
                 if ($end > 5) {
+                    for ($i = $from; $i <= $to; $i++) {
+                        ?>
+                            <a href="<?=($i == 1) ? '/' : '/' . $i?>" class="btn btn-sm btn-danger<?=$page == $i ? ' btn-light' : ''?>"><?='&nbsp;&nbsp;' . $i . '&nbsp;&nbsp;'?></a>
+                        <?php
+                    })
                     ?>
                         <button class="btn btn-sm btn-danger" disabled>&nbsp;&nbsp;...&nbsp;&nbsp;</button>
                     <?php
