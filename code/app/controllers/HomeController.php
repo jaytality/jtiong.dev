@@ -55,12 +55,15 @@ class HomeController extends Controller
         $oldest = $homeModel->getOldestCommit();
         $newest = $homeModel->getNewestCommit();
 
+        echo $oldest['time'] . '<br />';
+        echo $newest['time'] . '<br />';
+
         // get oldest commit's month and year
         $commitStart = $month = date('Y-m-d', $oldest['time']);
         $commitEnd   = date('Y-m-d', $newest['time']);
 
-        while($commitStart < $commitEnd) {
-            echo date('Y-m', $month) . PHP_EOL;
+        while($month < $commitEnd) {
+            echo date('Y-m', $month) . '<br />';
             $month = strtotime("+1 month", $month);
         }
 
