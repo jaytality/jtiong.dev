@@ -6,7 +6,7 @@ namespace spark\Controllers;
 
 use \spark\Core\Controller as Controller;
 
-use \spark\Models\HomeModel as Model;
+use \spark\Models\HomeModel;
 
 use \spark\Helpers\Time;
 
@@ -16,6 +16,8 @@ class HomeController extends Controller
 {
     function index($page = 0)
     {
+        $homeModel = new HomeModel;
+
         $limit = 25;    // this is the number of commit messages to show per page
         $from  = 0;     // starting visible pagination number (not including 1 and ...)
         $to    = 0;     // last visible pagination number (not including end and ...)
@@ -50,12 +52,26 @@ class HomeController extends Controller
             $commits = R::find('commits', ' ORDER BY time DESC LIMIT ' . $limit . ' OFFSET ' . $offset );
         }
 
+        $oldest = $homeModel->getOldestCommit();
+        $newest = $homeModel->getNewestCommit();
+
+        // get oldest commit's month and year
+        $commitStart = $month = date('Y-m-d', $oldest['time']);
+        $commitEnd   = date('Y-m-d', $newest['time']);
+
+        while($commitStart < $commitEnd) {
+            echo date('Y-m', $month) . PHP_EOL;
+            $month = strtotime("+1 month", $month);
+        }
+
         // navigation variables
         $this->viewData['from']    = $from;
         $this->viewData['to']      = $to;
         $this->viewData['end']     = $totalPages - 1;
         $this->viewData['commits'] = $commits;
         $this->viewData['page']    = $page;
+        $this->viewData['oldest']  = $oldest;
+        $this->viewData['newest']  = $newest;
 
 		$this->viewOpts['page']['layout']  = 'default';
         $this->viewOpts['page']['content'] = 'home/index';
