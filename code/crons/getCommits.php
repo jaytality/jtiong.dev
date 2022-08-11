@@ -26,10 +26,13 @@ echo "gitlab token: " . getConfig('gitlab.token') . "\n\n";
 $projects = get('https://gitlab.jtiong.dev/api/v4/projects?private_token=' . getConfig('gitlab.token'));
 $projects = json_decode($projects, true);
 
+echo print_r($project);
+
 // for each project...
 foreach ($projects as $project) {
     $branches = get('https://gitlab.jtiong.dev/api/v4/projects/' . $project['id'] . '/repository/branches?private_token=' . getConfig('gitlab.token'));
     $branches = json_decode($branches, true);
+    echo print_r($branches);
 
     foreach ($branches as $branch) {
         $commits = get('https://gitlab.jtiong.dev/api/v4/projects/' . $project['id'] . '/repository/commits?private_token=' . getConfig('gitlab.token'));
