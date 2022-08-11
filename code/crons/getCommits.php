@@ -20,8 +20,11 @@ function get($url)
     return $response;
 }
 
+// debug flag for in-line console stuff
+$debug = false;
+
 // @todo I need to implement fetching the GitHub commits as well
-echo "gitlab token: " . getConfig('gitlab.token') . "\n\n";
+echo ($debug) ? "gitlab token: " . getConfig('gitlab.token') . "\n\n" : '';
 
 $projects = get('https://gitlab.jtiong.dev/api/v4/projects?private_token=' . getConfig('gitlab.token'));
 $projects = json_decode($projects, true);
@@ -30,15 +33,15 @@ $projects = json_decode($projects, true);
 foreach ($projects as $project) {
     $branches = get('https://gitlab.jtiong.dev/api/v4/projects/' . $project['id'] . '/repository/branches?private_token=' . getConfig('gitlab.token'));
     $branches = json_decode($branches, true);
-    echo "PROJECT: {$project['name']}\n";
+    echo ($debug) ? "PROJECT: {$project['name']}\n" : '';
 
     foreach ($branches as $branch) {
         $commits = get('https://gitlab.jtiong.dev/api/v4/projects/' . $project['id'] . '/repository/commits?private_token=' . getConfig('gitlab.token'));
         $commits = json_decode($commits, true);
-        echo "\t{$branch['name']}\n";
+        echo ($debug) ? "\t{$branch['name']}\n" : '';
 
         foreach ($commits as $commit) {
-            echo "\t\t" . strtotime($commit['created_at']) . " - " . $commit['short_id'] . ": " . $commit['title'] . "\n";
+            echo ($debug) ? "\t\t" . strtotime($commit['created_at']) . " - " . $commit['short_id'] . ": " . $commit['title'] . "\n" : '';
             $existCheck = R::findOne('commits', ' branch = ? AND fullhash = ?', [ $branch['name'], $commit['id'] ]);
             if ($existCheck == null) {
                 $entry = R::xdispense('commits');
