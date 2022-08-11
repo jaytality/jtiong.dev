@@ -37,11 +37,10 @@ foreach ($projects as $project) {
         $commits = json_decode($commits, true);
         echo "\t{$branch['name']}\n";
 
-        print_r($commits);
-
         foreach ($commits as $commit) {
-            $entryCheck = R::findOne('commits', ' fullhash = ?', [ $commit['id'] ]);
-            if ($entryCheck == null) {
+            echo "\t\t" . strtotime($commit['created_at']) . " - " . $commit['short_id'] . ": " . $commit['title'] . "\n";
+            $existCheck = R::findOne('commits', ' branch = ? AND fullhash = ?', [ $branch['name'], $commit['id'] ]);
+            if ($existCheck == null) {
                 $entry = R::xdispense('commits');
                 $entry['time']     = strtotime($commit['created_at']);
                 $entry['project']  = $project['path'];
