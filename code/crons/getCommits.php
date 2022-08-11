@@ -37,6 +37,8 @@ foreach ($projects as $project) {
         $commits = json_decode($commits, true);
         echo "\t{$branch['name']}\n";
 
+        print_r($commits);
+
         foreach ($commits as $commit) {
             $entryCheck = R::findOne('commits', ' fullhash = ?', [ $commit['id'] ]);
             if ($entryCheck == null) {
