@@ -8,6 +8,7 @@
  * @author Johnathan Tiong <johnathan.tiong@gmail.com>
  * @copyright 2022 Johnathan Tiong
  */
+include "../config.php";
 
 function get($url)
 {
@@ -22,6 +23,8 @@ function get($url)
 }
 
 // @todo I need to implement fetching the GitHub commits as well
+
+die("token: " . getConfig('gitlab.token'));
 
 $projects = get('https://gitlab.jtiong.dev/api/v4/projects?private_token=' . getConfig('gitlab.token'));
 $projects = json_decode($projects, true);
