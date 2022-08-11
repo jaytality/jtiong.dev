@@ -26,7 +26,7 @@ echo "gitlab token: " . getConfig('gitlab.token') . "\n\n";
 $projects = get('https://gitlab.jtiong.dev/api/v4/projects?private_token=' . getConfig('gitlab.token'));
 $projects = json_decode($projects, true);
 
-echo print_r($project);
+echo print_r($projects);
 
 // for each project...
 foreach ($projects as $project) {
