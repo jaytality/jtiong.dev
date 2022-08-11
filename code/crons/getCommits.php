@@ -8,6 +8,7 @@
  * @author Johnathan Tiong <johnathan.tiong@gmail.com>
  * @copyright 2022 Johnathan Tiong
  */
+include "../config.php";
 
 function get($url)
 {
