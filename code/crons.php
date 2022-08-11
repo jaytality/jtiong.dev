@@ -34,7 +34,7 @@ R::ext('xdispense', function ($type) {
 });
 
 if(!R::testConnection()) {
-    die("Could not connect to DB");
+    die("Could not connect to DB - using: " . getConfig('database.type') . ':host=' . getConfig('database.host') . ';dbname=' . getConfig('database.name') . " - " . getConfig('database.user') . ' : ' . getConfig('database.pass') . "\n\n");
 }
 
 // @todo some sort of multithreaded execution of cron task files
