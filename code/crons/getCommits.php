@@ -38,7 +38,7 @@ foreach ($projects as $project) {
     $branches = get('https://gitlab.jtiong.dev/api/v4/projects/' . $project['id'] . '/repository/branches?private_token=' . getConfig('gitlab.token'));
     $branches = json_decode($branches, true);
 
-    echo ($debug) ? "PROJECT: {$project['name']}\n" : '';
+    echo ($debug) ? "PROJECT: {$project['path']}\n" : '';
 
     foreach ($branches as $branch) {
         $commits = get('https://gitlab.jtiong.dev/api/v4/projects/' . $project['id'] . '/repository/commits?private_token=' . getConfig('gitlab.token'));
