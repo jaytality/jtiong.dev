@@ -29,21 +29,32 @@ echo ($debug) ? "gitlab token: " . getConfig('gitlab.token') . "\n\n" : '';
 $projects = get('https://gitlab.jtiong.dev/api/v4/projects?private_token=' . getConfig('gitlab.token'));
 $projects = json_decode($projects, true);
 
+$multibranch = [    // certain projects rely on specific branching - for these projects, it is pertinent to count exclusive branches
+    'backups',
+];
+
 // for each project...
 foreach ($projects as $project) {
     $branches = get('https://gitlab.jtiong.dev/api/v4/projects/' . $project['id'] . '/repository/branches?private_token=' . getConfig('gitlab.token'));
     $branches = json_decode($branches, true);
+
     echo ($debug) ? "PROJECT: {$project['name']}\n" : '';
 
     foreach ($branches as $branch) {
         $commits = get('https://gitlab.jtiong.dev/api/v4/projects/' . $project['id'] . '/repository/commits?private_token=' . getConfig('gitlab.token'));
         $commits = json_decode($commits, true);
+
         echo ($debug) ? "\t{$branch['name']}\n" : '';
 
         foreach ($commits as $commit) {
             echo ($debug) ? "\t\t" . strtotime($commit['created_at']) . " - " . $commit['short_id'] . ": " . $commit['title'] . "\n" : '';
+
             // check if the commit already exists in the DB
-            $existCheck = R::findOne('commits', ' branch = ? AND fullhash = ?', [ $branch['name'], $commit['id'] ]);
+            if (in_array($project['name'], $multibranch)) {
+                $existCheck = R::findOne('commits', ' branch = ? AND fullhash = ?', [ $branch['name'], $commit['id'] ]);
+            } else {
+                $existCheck = R::findOne('commits', ' fullhash = ?', [ $commit['id'] ]);
+            }
 
             if ($existCheck == null) {
                 $entry = R::xdispense('commits');
