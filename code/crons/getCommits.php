@@ -50,7 +50,7 @@ foreach ($projects as $project) {
             echo ($debug) ? "\t\t" . strtotime($commit['created_at']) . " - " . $commit['short_id'] . ": " . $commit['title'] . "\n" : '';
 
             // check if the commit already exists in the DB
-            if (in_array($project['name'], $multibranch)) {
+            if (in_array($project['path'], $multibranch)) {
                 $existCheck = R::findOne('commits', ' branch = ? AND fullhash = ?', [ $branch['name'], $commit['id'] ]);
             } else {
                 $existCheck = R::findOne('commits', ' fullhash = ?', [ $commit['id'] ]);
