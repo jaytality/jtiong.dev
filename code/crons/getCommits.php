@@ -42,7 +42,9 @@ foreach ($projects as $project) {
 
         foreach ($commits as $commit) {
             echo ($debug) ? "\t\t" . strtotime($commit['created_at']) . " - " . $commit['short_id'] . ": " . $commit['title'] . "\n" : '';
-            $existCheck = R::findOne('commits', ' fullhash = ?', [ $commit['id'] ]);
+            // check if the commit already exists in the DB
+            $existCheck = R::findOne('commits', ' branch = ? AND fullhash = ?', [ $branch['name'], $commit['id'] ]);
+
             if ($existCheck == null) {
                 $entry = R::xdispense('commits');
                 $entry['time']     = strtotime($commit['created_at']);

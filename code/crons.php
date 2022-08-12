@@ -39,12 +39,6 @@ if(!R::testConnection()) {
 
 // @todo some sort of multithreaded execution of cron task files
 
-// get the current time
-// we need to build in a tolerance of +/- 29 seconds around the timers
-// $currentTime    = time();
-// $fuzzyTimeStart = $currentTime - 29;
-// $fuzzyTimeEnd   = $currentTime + 29;
-
 // every minute let's execute these
 // these can be a problem because these files all run sequentially
 foreach (glob(ROOT . "/crons/*.php") as $filename) {

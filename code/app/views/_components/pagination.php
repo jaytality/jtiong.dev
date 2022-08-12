@@ -5,9 +5,11 @@
         <a href="/" class="btn btn-sm btn-danger<?=$page == 0 ? ' btn-light' : ''?>">&nbsp;&nbsp;1&nbsp;&nbsp;</a>
         <?php
             if ($page > 4) {
-                ?>
-                    <button class="btn btn-sm btn-danger" disabled>&nbsp;&nbsp;...&nbsp;&nbsp;</button>
-                <?php
+                if ($from - 1 > 1) {
+                    ?>
+                        <button class="btn btn-sm btn-danger" disabled>&nbsp;&nbsp;...&nbsp;&nbsp;</button>
+                    <?php
+                }
             }
             // if there's more than 5 pages
             if ($end > 5) {
@@ -22,9 +24,11 @@
                 }
 
                 if ($to != $end) {
-                    ?>
-                        <button class="btn btn-sm btn-danger" disabled>&nbsp;&nbsp;...&nbsp;&nbsp;</button>
-                    <?php
+                    if ($end - $to > 1) {
+                        ?>
+                            <button class="btn btn-sm btn-danger" disabled>&nbsp;&nbsp;...&nbsp;&nbsp;</button>
+                        <?php
+                    }
                 }
             }
 
