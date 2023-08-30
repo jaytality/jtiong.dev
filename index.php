@@ -16,17 +16,36 @@ define('model', ROOT . '/app/models');
 define('views', ROOT . '/app/views');
 
 // autoload composer
-require 'vendor/autoload.php';
+require ROOT . '/vendor/autoload.php';
+require ROOT . '/bootstrap.php';
 
-// configuration and ORM
-require ROOT . '/config.php';
-require ROOT . '/R.php';
+use Illuminate\Database\Capsule\Manager as Capsule;
 
-R::setup(getConfig('database.type') . ':host=' . getConfig('database.host') . ';dbname=' . getConfig('database.name'), getConfig('database.user'), getConfig('database.pass'));
-R::ext('xdispense', function ($type) {
-    return R::getRedBean()->dispense($type);
-});
-// echo R::testConnection() ? 'connected to the DB' : 'not connected to the DB'; die();
+/**
+ * DB connection using Capsule
+ */
+$capsule = new Capsule;
+
+$capsule->addConnection([
+    'driver' => 'mysql',
+    'host' => getConfig('database.host'),
+    'database' => getConfig('database.name'),
+    'username' => getConfig('database.user'),
+    'password' => getConfig('database.pass'),
+    'options' => [
+        PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => true,
+        PDO::MYSQL_ATTR_SSL_KEY => '/etc/ssl/certs/ca-certificates.crt'
+    ]
+]);
+
+$capsule->setAsGlobal();
+
+$capsule->bootEloquent();
+
+// database migrations
+foreach (glob(ROOT . "/database/*.php") as $filename) {
+    include $filename;
+}
 
 $base = new \spark\Core\Base();
 
@@ -38,7 +57,4 @@ date_default_timezone_set('Australia/Sydney');
 ini_set('log_errors', 1);
 ini_set('display_errors', 1);
 
-include ROOT . '/bootstrap.php';
 include ROOT . '/routing.php';
-
-R::close();
