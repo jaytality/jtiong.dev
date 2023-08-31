@@ -8,6 +8,12 @@
  * @author Johnathan Tiong <johnathan.tiong@gmail.com>
  * @copyright 2022 Johnathan Tiong
  *
+ * GITHUB FIELDS:
+ *  - node_id
+ *  - name
+ *  - description
+ *  - html_url
+ *
  * @version 1.0 (2022)          - curl request to gitlab and dump into local mysql
  * @version 1.1 (2023-08-31)    - updating to use github, planetscale DB
  */
@@ -16,17 +22,57 @@ require_once '../bootstrap.php';
 
 use Illuminate\Database\Capsule\Manager as Capsule;
 
-function get($url)
+$accessToken = getConfig('github.token');
+$githubUsername = getConfig('github.username');
+
+// Function to get the list of repositories for a username
+function getRepositoriesForUser($accessToken, $githubUsername)
 {
-    $curl = curl_init($url);
-    curl_setopt($curl, CURLOPT_URL, $url);
-    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    $url = "https://api.github.com/users/{$githubUsername}/repos";
 
-    $response = curl_exec($curl);
-    curl_close($curl);
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+        "Authorization: token {$accessToken}",
+        "User-Agent: Awesome-App" // Replace 'Awesome-App' with your app name or identifier
+    ));
 
-    return $response;
+    $response = curl_exec($ch);
+    curl_close($ch);
+
+    return json_decode($response, true);
 }
+
+// Get the repositories
+$repositories = getRepositoriesForUser($accessToken, $githubUsername);
+
+// Output the repositories
+if (is_array($repositories)) {
+    foreach ($repositories as $repo) {
+        $checkRepo = Capsule::table('jtdev_repos')
+                        ->where('github', '=', $repo['node_id'])
+                        ->where('name', '=', $repo['name'])
+                        ->get();
+
+        if ($checkRepo->isEmpty()) {
+            $addRepot = Capsule::table('jtdev_repos')->insert([
+                'name'        => $repo['name'],
+                'github'      => $repo['node_id'],
+                'created'     => strtotime($repo['created_at']),
+                'visible'     => true,
+                'description' => $repo['description'],
+                'url'         => $repo['html_url']
+            ]);
+        }
+    }
+} else {
+    echo "Error fetching repositories.";
+}
+
+
+
+/*
 
 // debug flag for in-line console stuff
 $debug = false;
@@ -77,3 +123,6 @@ foreach ($projects as $project) {
         }
     }
 }
+*/
+
+// end of file
