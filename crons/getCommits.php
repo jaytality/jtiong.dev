@@ -3,7 +3,7 @@
 /**
  * getCommits
  *
- * fetch all the relevant commits that i've done
+ * fetch all the repositories & relevant commits that i've done
  *
  * @author Johnathan Tiong <johnathan.tiong@gmail.com>
  * @copyright 2022 Johnathan Tiong
@@ -44,6 +44,24 @@ function getRepositoriesForUser($accessToken, $githubUsername)
     return json_decode($response, true);
 }
 
+function getCommitsByUser($accessToken, $githubUsername, $repository)
+{
+    $url = "https://api.github.com/repos/{$githubUsername}/{$repository}/commits";
+
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+        "Authorization: token {$accessToken}",
+        "User-Agent: Awesome-App" // Replace 'Awesome-App' with your app name or identifier
+    ));
+
+    $response = curl_exec($ch);
+    curl_close($ch);
+
+    return json_decode($response, true);
+}
+
 // Get the repositories
 $repositories = getRepositoriesForUser($accessToken, $githubUsername);
 
@@ -51,18 +69,19 @@ $repositories = getRepositoriesForUser($accessToken, $githubUsername);
 if (is_array($repositories)) {
     foreach ($repositories as $repo) {
         $checkRepo = Capsule::table('jtdev_repos')
-                        ->where('github', '=', $repo['node_id'])
-                        ->where('name', '=', $repo['name'])
-                        ->get();
+            ->where('github', '=', $repo['node_id'])
+            ->where('name', '=', $repo['name'])
+            ->get();
 
         if ($checkRepo->isEmpty()) {
-            $addRepot = Capsule::table('jtdev_repos')->insert([
+            $addRepo = Capsule::table('jtdev_repos')->insert([
                 'name'        => $repo['name'],
-                'github'      => $repo['node_id'],
+                'githubid'    => $repo['id'],
                 'created'     => strtotime($repo['created_at']),
                 'visible'     => true,
                 'description' => $repo['description'],
-                'url'         => $repo['html_url']
+                'url'         => $repo['html_url'],
+                'fork'        => $repo['fork'],
             ]);
         }
     }
@@ -70,59 +89,41 @@ if (is_array($repositories)) {
     echo "Error fetching repositories.";
 }
 
+// Now, for each repository listed, fetch the commits for each repo
+// to save on calls - we only work with visible repos
+$repos = Capsule::table('jtdev_repos')
+            ->where('visible', '=', true)
+            ->get();
 
+foreach ($repos as $repo) {
+    $repository = $repo->name;
 
-/*
+    // Get the commits
+    $commits = getCommitsByUser($accessToken, $githubUsername, $repository);
 
-// debug flag for in-line console stuff
-$debug = false;
-
-// @todo I need to implement fetching the GitHub commits as well
-echo ($debug) ? "gitlab token: " . getConfig('gitlab.token') . "\n\n" : '';
-
-$projects = get('https://gitlab.jtiong.dev/api/v4/projects?private_token=' . getConfig('gitlab.token'));
-$projects = json_decode($projects, true);
-
-$multibranch = [    // certain projects rely on specific branching - for these projects, it is pertinent to count exclusive branches
-    'backups',
-];
-
-// for each project...
-foreach ($projects as $project) {
-    $branches = get('https://gitlab.jtiong.dev/api/v4/projects/' . $project['id'] . '/repository/branches?private_token=' . getConfig('gitlab.token'));
-    $branches = json_decode($branches, true);
-
-    echo ($debug) ? "PROJECT: {$project['path']}\n" : '';
-
-    foreach ($branches as $branch) {
-        $commits = get('https://gitlab.jtiong.dev/api/v4/projects/' . $project['id'] . '/repository/commits?private_token=' . getConfig('gitlab.token'));
-        $commits = json_decode($commits, true);
-
-        echo ($debug) ? "\t{$branch['name']}\n" : '';
-
+    // Output the commits
+    if (is_array($commits)) {
         foreach ($commits as $commit) {
-            echo ($debug) ? "\t\t" . strtotime($commit['created_at']) . " - " . $commit['short_id'] . ": " . $commit['title'] . "\n" : '';
+            $checkCommit = Capsule::table('jtdev_commits')
+                ->where('sha', '=', $commit['sha'])
+                ->get();
 
-            // check if the commit already exists in the DB
-            if (in_array($project['path'], $multibranch)) {
-                $existCheck = R::findOne('commits', ' branch = ? AND fullhash = ?', [ $branch['name'], $commit['id'] ]);
-            } else {
-                $existCheck = R::findOne('commits', ' fullhash = ?', [ $commit['id'] ]);
-            }
-
-            if ($existCheck == null) {
-                $entry = R::xdispense('commits');
-                $entry['time']     = strtotime($commit['created_at']);
-                $entry['project']  = $project['path'];
-                $entry['branch']   = $branch['name'];
-                $entry['hash']     = $commit['short_id'];
-                $entry['fullhash'] = $commit['id'];
-                $entry['title']    = $commit['title'];
-                R::store($entry);
+            if ($checkCommit->isEmpty()) {
+                $addCommit = Capsule::table('jtdev_commits')->insert([
+                    'sha'       => $commit['sha'],
+                    'date'      => $commit['commit']['author']['date'],
+                    'repo_id'   => $repo->githubid,
+                    'repo_name' => $repo->name,
+                    'message'   => $commit['commit']['message'],
+                    'author'    => $commit['commit']['author']['name'],
+                    'email'     => $commit['commit']['author']['email'],
+                    'url'       => $commit['html_url'],
+                ]);
             }
         }
+    } else {
+        echo "Error fetching commits.";
     }
 }
-*/
 
 // end of file
