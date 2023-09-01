@@ -4,14 +4,11 @@
  *
  * this file executes scripts from a /crons folder at various intervals which can be programmatically detected
  * this particular file - should be set to execute every minute
- * crons are stored as scripts within the /crons/ folder
- *      sub folders are created for every interval required of a cron IN SECONDS
- *
- * NOTE: accuracy of this cron execution is honestly really janky it's built to just LOOSELY run stuff, and not accurately run stuff
- * for true accuracy it's highly recommended you run things via the built in OS cron system/schedular systems
  *
  * @author Johnathan Tiong <johnathan.tiong@gmail.com>
  * @copyright 2022 Johnathan Tiong
+ *
+ * @version 2023-09-01 updating to use Eloquent, and lay the groundwork for a fully functioning cron setup
  */
 
 // root constant
