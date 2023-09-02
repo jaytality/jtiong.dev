@@ -6,6 +6,7 @@
         "psr-4": {
             "spark\\Core\\" : "library/core/",
             "spark\\Helpers\\" : "library/helpers/",
+            "spark\\Traits\\" : "library/traits/",
             "spark\\Controllers\\" : "app/controllers/",
             "spark\\Models\\" : "app/models/"
         }
