@@ -2,7 +2,7 @@
 
 /**
  * @author Johnathan Tiong <johnathan.tiong@gmail.com>
- * @copyright 2016-09-01 eLeague Pty Ltd
+ * @copyright 2016-09-01 Johnathan Tiong
  */
 
 session_start();
