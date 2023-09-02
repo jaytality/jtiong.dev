@@ -20,18 +20,33 @@ define('model', ROOT . '/app/models');
 define('views', ROOT . '/app/views');
 
 // autoload composer
-require 'vendor/autoload.php';
+require ROOT . '/vendor/autoload.php';
+require ROOT . '/bootstrap.php';
 
-require ROOT . '/config.php';
-require ROOT . '/R.php';
+/**
+ * DB connection using Capsule
+ */
+$capsule = new Capsule;
 
-R::setup(getConfig('database.type') . ':host=' . getConfig('database.host') . ';dbname=' . getConfig('database.name'), getConfig('database.user'), getConfig('database.pass'));
-R::ext('xdispense', function ($type) {
-    return R::getRedBean()->dispense($type);
-});
+$capsule->addConnection([
+    'driver' => 'mysql',
+    'host' => getConfig('database.host'),
+    'database' => getConfig('database.name'),
+    'username' => getConfig('database.user'),
+    'password' => getConfig('database.pass'),
+    'options' => [
+        PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => true,
+        PDO::MYSQL_ATTR_SSL_KEY => '/etc/ssl/certs/ca-certificates.crt'
+    ]
+]);
 
-if(!R::testConnection()) {
-    die("Could not connect to DB - using: " . getConfig('database.type') . ':host=' . getConfig('database.host') . ';dbname=' . getConfig('database.name') . " - " . getConfig('database.user') . ' : ' . getConfig('database.pass') . "\n\n");
+$capsule->setAsGlobal();
+
+$capsule->bootEloquent();
+
+// database migrations
+foreach (glob(ROOT . "/database/*.php") as $filename) {
+    include $filename;
 }
 
 // @todo some sort of multithreaded execution of cron task files
