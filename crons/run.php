@@ -1,9 +1,10 @@
 <?php
 /**
- * crons
+ * crons/run.php
  *
- * this file executes scripts from a /crons folder at various intervals which can be programmatically detected
- * this particular file - should be set to execute every minute
+ * this file executes scripts from a /crons/jobs folder at various intervals which can be programmatically detected
+ * this particular file - should be set to execute every minute, and the files inside the /crons/jobs folder should
+ * have a specified run time
  *
  * @author Johnathan Tiong <johnathan.tiong@gmail.com>
  * @copyright 2022 Johnathan Tiong
@@ -48,8 +49,6 @@ $capsule->bootEloquent();
 foreach (glob(ROOT . "/database/*.php") as $filename) {
     include $filename;
 }
-
-// @todo some sort of multithreaded execution of cron task files
 
 // every minute let's execute these
 // these can be a problem because these files all run sequentially
