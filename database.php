@@ -33,8 +33,3 @@ $capsule->bootEloquent();
 foreach (glob(ROOT . "/database/*.php") as $filename) {
     include $filename;
 }
-
-// include all functions
-foreach (glob(ROOT . "/functions/*.php") as $filename) {
-    include $filename;
-}

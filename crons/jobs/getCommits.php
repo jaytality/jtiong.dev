@@ -13,6 +13,7 @@
  */
 
 require_once '../../bootstrap.php';
+require_once '../../database.php';
 
 use Illuminate\Database\Capsule\Manager as Capsule;
 
