@@ -12,7 +12,7 @@
  * @version 1.1 (2023-08-31)    - updating to use github, planetscale DB
  */
 
-require_once '../bootstrap.php';
+require_once '../../bootstrap.php';
 
 use Illuminate\Database\Capsule\Manager as Capsule;
 
