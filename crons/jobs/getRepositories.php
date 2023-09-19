@@ -21,7 +21,12 @@ $githubUsername = getConfig('github.username');
 // Function to get the list of repositories for a username
 function getRepositoriesForUser($accessToken, $githubUsername)
 {
-    $url = "https://api.github.com/users/{$githubUsername}/repos";
+    $params = [
+        'per_page' => 100,
+        'page' => 1,
+    ];
+
+    $url = "https://api.github.com/users/{$githubUsername}/repos?" . http_build_query($params);
 
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
@@ -39,6 +44,10 @@ function getRepositoriesForUser($accessToken, $githubUsername)
 
 // Get the repositories
 $repositories = getRepositoriesForUser($accessToken, $githubUsername);
+
+// truncate the table - Github should always be the source of truth
+// by doing this - any deleted repos will also no longer be relevant to the frontend
+$truncateRepos = Capsule::table('jtdev_repos')->truncate();
 
 // Output the repositories
 if (is_array($repositories)) {
