@@ -42,12 +42,15 @@ $repositories = getRepositoriesForUser($accessToken, $githubUsername);
 // Output the repositories
 if (is_array($repositories)) {
     foreach ($repositories as $repo) {
+        echo "CHECKING REPO: $repo\n";
+
         $checkRepo = Capsule::table('jtdev_repos')
             ->where('github', '=', $repo['node_id'])
             ->where('name', '=', $repo['name'])
             ->get();
 
         if ($checkRepo->isEmpty()) {
+            echo "ADDING NEW REPOSITORY: $repo\n";
             $addRepo = Capsule::table('jtdev_repos')->insert([
                 'name'        => $repo['name'],
                 'githubid'    => $repo['id'],
@@ -57,6 +60,8 @@ if (is_array($repositories)) {
                 'url'         => $repo['html_url'],
                 'fork'        => $repo['fork'],
             ]);
+        } else {
+            echo "REPOSITORY EXISTS ($repo) \n\n";
         }
     }
 } else {
