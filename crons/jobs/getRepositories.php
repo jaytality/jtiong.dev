@@ -55,7 +55,7 @@ if (is_array($repositories)) {
             $addRepo = Capsule::table('jtdev_repos')->insert([
                 'name'        => $repo['name'],
                 'githubid'    => $repo['id'],
-                'created'     => strtotime($repo['created_at']),
+                'created'     => $repo['created_at'],
                 'visible'     => true,
                 'description' => $repo['description'],
                 'url'         => $repo['html_url'],
