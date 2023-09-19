@@ -55,6 +55,7 @@ foreach ($repos as $repo) {
     // Output the commits
     if (is_array($commits)) {
         foreach ($commits as $commit) {
+            echo print_r($commit, true) . "\n\n";
             echo "\tChecking commit [{$commit['sha']}]...\n";
 
             $checkCommit = Capsule::table('jtdev_commits')
@@ -73,6 +74,8 @@ foreach ($repos as $repo) {
                     'email'     => $commit['commit']['author']['email'],
                     'url'       => $commit['html_url'],
                 ]);
+            } else {
+                echo "\tCommit exists... skipping!\n\n";
             }
         }
     } else {
