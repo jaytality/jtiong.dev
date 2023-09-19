@@ -62,7 +62,7 @@ foreach ($repos as $repo) {
                 ->get();
 
             if ($checkCommit->isEmpty()) {
-                echo "\tCommit not found, recording new commit!"\n\n;
+                echo "\tCommit not found, recording new commit!\n\n";
                 $addCommit = Capsule::table('jtdev_commits')->insert([
                     'sha'       => $commit['sha'],
                     'date'      => date("Y-m-d H:i:s", strtotime($commit['commit']['author']['date'])),
