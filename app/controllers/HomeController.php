@@ -16,6 +16,7 @@ class HomeController extends Controller
 {
     function index($page = 0)
     {
+        /*
         $homeModel = new HomeModel;
 
         $limit = 25;    // this is the number of commit messages to show per page
@@ -92,7 +93,7 @@ class HomeController extends Controller
         $this->viewData['page']       = $page;
         $this->viewData['highest']    = $highestCommits;
         $this->viewData['statistics'] = $statistics;
-
+        */
 		$this->viewOpts['page']['layout']  = 'default';
         $this->viewOpts['page']['content'] = 'home/index';
         $this->viewOpts['page']['section'] = 'home';
