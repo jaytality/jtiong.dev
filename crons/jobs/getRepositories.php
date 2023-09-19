@@ -49,6 +49,7 @@ $repositories = getRepositoriesForUser($accessToken, $githubUsername);
 // truncate the table - Github should always be the source of truth
 // by doing this - any deleted repos will also no longer be relevant to the frontend
 $truncateRepos = Capsule::table('jtdev_repos')->truncate();
+$count = 1;
 
 // Output the repositories
 if (is_array($repositories)) {
@@ -71,6 +72,8 @@ if (is_array($repositories)) {
                 'url'         => $repo['html_url'],
                 'fork'        => $repo['fork'],
             ]);
+            echo "COUNT: $count\n\n";
+            $count++;
         } else {
             echo "REPOSITORY EXISTS ({$repo['name']}) \n\n";
         }
