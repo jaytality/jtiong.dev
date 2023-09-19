@@ -55,7 +55,8 @@ foreach ($repos as $repo) {
     // Output the commits
     if (is_array($commits)) {
         foreach ($commits as $commit) {
-            echo print_r($commit, true) . "\n\n";
+            if ($commit == "Git Repository is empty.") continue;
+
             echo "\tChecking commit [{$commit['sha']}]...\n";
 
             $checkCommit = Capsule::table('jtdev_commits')
