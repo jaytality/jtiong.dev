@@ -46,7 +46,7 @@ if (is_array($repositories)) {
         echo "CHECKING REPO: {$repo['name']}\n";
 
         $checkRepo = Capsule::table('jtdev_repos')
-            ->where('githubid', '=', $repo['node_id'])
+            ->where('githubid', '=', $repo['id'])
             ->where('name', '=', $repo['name'])
             ->get();
 
