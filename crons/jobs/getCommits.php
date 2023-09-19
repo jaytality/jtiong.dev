@@ -8,12 +8,6 @@
  * @author Johnathan Tiong <johnathan.tiong@gmail.com>
  * @copyright 2022 Johnathan Tiong
  *
- * GITHUB FIELDS:
- *  - node_id
- *  - name
- *  - description
- *  - html_url
- *
  * @version 1.0 (2022)          - curl request to gitlab and dump into local mysql
  * @version 1.1 (2023-08-31)    - updating to use github, planetscale DB
  */
