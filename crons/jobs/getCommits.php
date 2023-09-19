@@ -55,7 +55,7 @@ foreach ($repos as $repo) {
     // Output the commits
     if (is_array($commits)) {
         foreach ($commits as $commit) {
-            if ($commit == "Git Repository is empty.") continue;
+            if (!is_array($commit)) continue;
 
             echo "\tChecking commit [{$commit['sha']}]...\n";
 
