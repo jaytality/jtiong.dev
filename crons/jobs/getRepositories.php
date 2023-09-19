@@ -27,7 +27,7 @@ function getRepositoriesForUser($accessToken, $githubUsername)
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-        "Authorization: token {$accessToken}",
+        "Authorization: Bearer {$accessToken}",
         "User-Agent: jtiong.dev" // Replace 'Awesome-App' with your app name or identifier
     ));
 
