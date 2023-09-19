@@ -46,6 +46,7 @@ $repos = Capsule::table('jtdev_repos')
             ->get();
 
 foreach ($repos as $repo) {
+    echo "Fetching Commits for... {$repo->name}\n";
     $repository = $repo->name;
 
     // Get the commits
@@ -54,14 +55,17 @@ foreach ($repos as $repo) {
     // Output the commits
     if (is_array($commits)) {
         foreach ($commits as $commit) {
+            echo "\tChecking commit [{$commit['sha']}]...\n";
+
             $checkCommit = Capsule::table('jtdev_commits')
                 ->where('sha', '=', $commit['sha'])
                 ->get();
 
             if ($checkCommit->isEmpty()) {
+                echo "\tCommit not found, recording new commit!"\n\n;
                 $addCommit = Capsule::table('jtdev_commits')->insert([
                     'sha'       => $commit['sha'],
-                    'date'      => $commit['commit']['author']['date'],
+                    'date'      => date("Y-m-d H:i:s", strtotime($commit['commit']['author']['date'])),
                     'repo_id'   => $repo->githubid,
                     'repo_name' => $repo->name,
                     'message'   => $commit['commit']['message'],
