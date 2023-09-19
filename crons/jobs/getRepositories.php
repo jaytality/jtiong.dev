@@ -22,8 +22,9 @@ $githubUsername = getConfig('github.username');
 function getRepositoriesForUser($accessToken, $githubUsername)
 {
     $params = [
+        'type'     => 'all',
         'per_page' => 100,
-        'page' => 1,
+        'page'     => 1,
     ];
 
     $url = "https://api.github.com/users/{$githubUsername}/repos?" . http_build_query($params);
