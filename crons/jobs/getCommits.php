@@ -39,9 +39,8 @@ function getCommitsByUser($accessToken, $githubUsername, $repository)
 }
 
 // Now, for each repository listed, fetch the commits for each repo
-// to save on calls - we only work with visible repos, and NON FORKS
+// to save on calls - we only work with NON FORKS
 $repos = Capsule::table('jtdev_repos')
-            ->where('visible', '=', true)
             ->where('fork', '=', false)
             ->get();
 
