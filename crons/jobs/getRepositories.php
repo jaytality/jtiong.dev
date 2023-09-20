@@ -59,9 +59,9 @@ curl_setopt($authCh, CURLOPT_HTTPHEADER, array(
 ));
 
 $auth = curl_exec($authCh);
-$auth = json_decode($auth);
+$auth = json_decode($auth, true);
 
-echo print_r($auth, true);
+echo "AUTH RESPONSE: " . print_r($auth, true);
 
 curl_close($authCh);
 die();
