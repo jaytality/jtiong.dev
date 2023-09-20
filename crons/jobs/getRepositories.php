@@ -31,7 +31,8 @@ function getRepositoriesForUser($accessToken)
         CURLOPT_CUSTOMREQUEST => 'GET',
         CURLOPT_HTTPHEADER => array(
             'Authorization: Bearer ' . $accessToken,
-            'X-GitHub-Api-Version: 2022-11-28'
+            'X-GitHub-Api-Version: 2022-11-28',
+            'User-Agent: jtiong.dev',
         ),
     ));
 
