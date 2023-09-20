@@ -61,8 +61,8 @@ class HomeController extends Controller
         $oldest = $homeModel->getOldestCommit();
         $newest = $homeModel->getNewestCommit();
 
-        $commitStart = $month = strtotime(date('Y-m-d', $oldest['time']));
-        $commitEnd   = strtotime(date('Y-m-d', $newest['time']));
+        $commitStart = $month = strtotime(date('Y-m-d', $oldest->date));
+        $commitEnd   = strtotime(date('Y-m-d', $newest->date));
 
         // build the statistics array
         $statistics = [];
@@ -75,7 +75,7 @@ class HomeController extends Controller
         $statistics[date('F Y')] = 0;
 
         foreach ($fullCommits as $commit) {
-            $statistics[date('F Y', $commit['time'])] += 1;
+            $statistics[date('F Y', $commit->date)] += 1;
         }
 
         // get the highestcommits for display calculations
