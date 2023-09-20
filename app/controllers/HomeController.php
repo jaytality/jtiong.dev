@@ -5,18 +5,14 @@
 namespace spark\Controllers;
 
 use \spark\Core\Controller as Controller;
-
 use \spark\Models\HomeModel;
-
 use \spark\Helpers\Time;
-
-use \R as R;
+use Illuminate\Database\Capsule\Manager as Capsule;
 
 class HomeController extends Controller
 {
     function index($page = 0)
     {
-        /*
         $homeModel = new HomeModel;
 
         $limit = 25;    // this is the number of commit messages to show per page
@@ -24,7 +20,8 @@ class HomeController extends Controller
         $to    = 0;     // last visible pagination number (not including end and ...)
 
         // total number of pages in pagination
-        $totalPages = R::count('commits') / $limit;
+        $commitCount = Capsule::table('jtdev_commits')->count();
+        $totalPages = $commitCount / $limit;
         $totalPages = ceil($totalPages);
 
         if ( // if we're within the first 5 pages of the list...
@@ -47,16 +44,20 @@ class HomeController extends Controller
 
         $offset = $page * $limit;
 
-        if ($offset == 0) {
-            $commits = R::find('commits', ' ORDER BY time DESC LIMIT '. $limit);
-        } else {
-            $commits = R::find('commits', ' ORDER BY time DESC LIMIT ' . $limit . ' OFFSET ' . $offset );
-        }
+        // if ($offset == 0) {
+        //     $commits = R::find('commits', ' ORDER BY time DESC LIMIT '. $limit);
+        // } else {
+        //     $commits = Capsule::table('')
+        //     $commits = R::find('commits', ' ORDER BY time DESC LIMIT ' . $limit . ' OFFSET ' . $offset );
+        // }
+
+        $commits = $homeModel->getCommits($limit, $offset);
 
         //
         // BUILDING COMMIT STATS GRAPH
         //
-        $fullCommits = R::find('commits', ' ORDER BY time ASC');
+        // $fullCommits = R::find('commits', ' ORDER BY time ASC');
+        $fullCommits = $homeModel->getCommitsTimeline();
         $oldest = $homeModel->getOldestCommit();
         $newest = $homeModel->getNewestCommit();
 

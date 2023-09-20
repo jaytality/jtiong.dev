@@ -3,19 +3,42 @@
 namespace spark\Models;
 
 use \spark\Core\Model as Model;
-
-use \R as R;
+use Illuminate\Database\Capsule\Manager as Capsule;
 
 class HomeModel extends Model
 {
     public function getOldestCommit()
     {
-        return R::findOne('commits', ' ORDER BY time ASC LIMIT 1');
+        $oldestCommit = Capsule::table('jtdev_commits')
+            ->orderBy('date', 'asc')
+            ->first();
+
+        return $oldestCommit;
     }
 
     public function getNewestCommit()
     {
-        return R::findOne('commits', ' ORDER BY time DESC LIMIT 1');
+        $newestCommit = Capsule::table('jtdev_commits')
+            ->orderBy('date', 'desc')
+            ->first();
+
+        return $newestCommit;
+    }
+
+    public function getCommits($limit = 0, $offset = 0)
+    {
+        $commits = Capsule::table('jtdev_commits')
+            ->orderBy('date', 'desc')
+            ->offset($offset)
+            ->limit($limit)
+            ->get();
+
+        return $commits;
+    }
+
+    public function getCommitsTimeline()
+    {
+        return Capsule::table('jtdev_commits')->orderBy('date', 'asc')->get();
     }
 }
 
