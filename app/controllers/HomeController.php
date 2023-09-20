@@ -61,8 +61,8 @@ class HomeController extends Controller
         $oldest = $homeModel->getOldestCommit();
         $newest = $homeModel->getNewestCommit();
 
-        $commitStart = $month = strtotime(date('Y-m-d', $oldest->date));
-        $commitEnd   = strtotime(date('Y-m-d', $newest->date));
+        $commitStart = $month = strtotime($oldest->date);
+        $commitEnd   = strtotime($newest->date);
 
         // build the statistics array
         $statistics = [];
