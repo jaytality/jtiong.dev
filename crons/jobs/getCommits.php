@@ -22,19 +22,25 @@ $githubUsername = getConfig('github.username');
 
 function getCommitsByUser($accessToken, $githubUsername, $repository)
 {
-    $url = "https://api.github.com/repos/{$githubUsername}/{$repository}/commits";
+    $curl = curl_init();
 
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-        "Authorization: Gearer {$accessToken}",
-        "User-Agent: jtiong.dev" // Replace 'Awesome-App' with your app name or identifier
+    curl_setopt_array($curl, array(
+        CURLOPT_URL => "https://api.github.com/repos/{$githubUsername}/{$repository}/commits",
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'GET',
+        CURLOPT_HTTPHEADER => array(
+            'Authorization: Bearer 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'
+        ),
     ));
 
-    $response = curl_exec($ch);
-    curl_close($ch);
+    $response = curl_exec($curl);
 
+    curl_close($curl);
     return json_decode($response, true);
 }
 
