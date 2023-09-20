@@ -21,50 +21,22 @@ $githubUsername = getConfig('github.username');
 // Function to get the list of repositories for a username
 function getRepositoriesForUser($accessToken, $githubUsername)
 {
-    $params = [
-        'visibility' => 'all',
-        'affiliation' => 'owner',
-        'per_page' => 100,
-        'page'     => 1,
-    ];
-
-    $url = "https://api.github.com/user/repos?" . http_build_query($params);
+    $url = "https://api.github.com/user/repos?visibility=all&affiliation=owner&per_page=100&page=1";
 
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+    curl_setopt($ch, CURLOPT_HTTPHEADER, [
         "Accept: application/vnd.github+json",
         "Authorization: token {$accessToken}",
         "X-GitHub-Api-Version: 2022-11-28",
-    ));
+    ]);
 
     $response = curl_exec($ch);
     curl_close($ch);
 
     return json_decode($response, true);
 }
-
-// authenticate first with curl
-
-$url = "https://api.github.com/octocat";
-
-$authCh = curl_init();
-curl_setopt($authCh, CURLOPT_URL, $url);
-curl_setopt($authCh, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($authCh, CURLOPT_HTTPHEADER, array(
-    "Accept: application/vnd.github+json",
-    "Authorization: token {$accessToken}",
-    "X-GitHub-Api-Version: 2022-11-28",
-));
-
-$auth = curl_exec($authCh);
-$auth = json_decode($auth, true);
-
-echo "AUTH RESPONSE: " . var_dump($auth);
-
-curl_close($authCh);
-die();
 
 // Get the repositories
 $repositories = getRepositoriesForUser($accessToken, $githubUsername);
