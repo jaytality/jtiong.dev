@@ -22,19 +22,21 @@ $githubUsername = getConfig('github.username');
 function getRepositoriesForUser($accessToken, $githubUsername)
 {
     $params = [
-        'type'     => 'all',
+        'visibility' => 'all',
+        'affiliation' => 'owner',
         'per_page' => 100,
         'page'     => 1,
     ];
 
-    $url = "https://api.github.com/users/{$githubUsername}/repos?" . http_build_query($params);
+    $url = "https://api.github.com/user/repos?" . http_build_query($params);
 
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+        "Accept: application/vnd.github+json",
         "Authorization: Bearer {$accessToken}",
-        "User-Agent: jtiong.dev" // Replace 'Awesome-App' with your app name or identifier
+        "X-GitHub-Api-Version: 2022-11-28",
     ));
 
     $response = curl_exec($ch);
