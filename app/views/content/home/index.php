@@ -26,7 +26,7 @@
     ?>
     <div class="row">
         <div class="col-md-12">
-            <table class="table">
+            <table class="table table-hover table-borderless">
                 <tbody>
                     <?php
                         foreach ($commits as $commit) {
@@ -35,14 +35,9 @@
                                 ?>
                                     <tr>
                                         <td>
-                                            <strong class="text-author">Johnathan</strong>
-                                            <br />
-                                            <small class="text-muted"><?=$time->niceOutput(strtotime($commit->date))?></small>
-                                        </td>
-                                        <td>
                                             <span style="font-size: 1.1rem; ">
-                                                <strong class="text-project"><?=$commit->repo_name?></strong>
-                                                <span class="text-muted">#<?=substr($commit->sha, 0, 6)?></span>
+                                                <strong class="text-project"><?=$commit->repo_name?></strong><strong class="text-info">#<?=substr($commit->sha, 0, 6)?></strong> &bull;
+                                                <small class="text-muted"><?=$time->niceOutput(strtotime($commit->date))?></small>
                                             </span>
                                             <p style="color: #ccc; "><?=$commit->message?></p>
                                         </td>

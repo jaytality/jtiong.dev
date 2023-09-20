@@ -43,14 +43,6 @@ class HomeController extends Controller
         }
 
         $offset = $page * $limit;
-
-        // if ($offset == 0) {
-        //     $commits = R::find('commits', ' ORDER BY time DESC LIMIT '. $limit);
-        // } else {
-        //     $commits = Capsule::table('')
-        //     $commits = R::find('commits', ' ORDER BY time DESC LIMIT ' . $limit . ' OFFSET ' . $offset );
-        // }
-
         $commits = $homeModel->getCommits($limit, $offset);
 
         //
