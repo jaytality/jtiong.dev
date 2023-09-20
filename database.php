@@ -6,9 +6,8 @@
  * connecting to the database - primarily used to cron tasks
  *
  */
-define('ROOT', dirname(__FILE__));
 
-require 'vendor/autoload.php';
+require_once 'vendor/autoload.php';
 
 use Illuminate\Database\Capsule\Manager as Capsule;
 $capsule = new Capsule;
