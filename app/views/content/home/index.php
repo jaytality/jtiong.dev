@@ -30,23 +30,25 @@
                 <tbody>
                     <?php
                         foreach ($commits as $commit) {
-                            $time = new \spark\Helpers\Time;
-                            ?>
-                                <tr>
-                                    <td>
-                                        <strong class="text-author">Johnathan</strong>
-                                        <br />
-                                        <small class="text-muted"><?=$time->niceOutput(strtotime($commit->date))?></small>
-                                    </td>
-                                    <td>
-                                        <span style="font-size: 1.1rem; ">
-                                            <strong class="text-project"><?=$commit->repo_name?></strong>
-                                            <span class="text-muted">#<?=substr($commit->sha, 0, 6)?></span>
-                                        </span>
-                                        <p style="color: #ccc; "><?=$commit->message?></p>
-                                    </td>
-                                </tr>
-                            <?php
+                            if ($commit->visible) {
+                                $time = new \spark\Helpers\Time;
+                                ?>
+                                    <tr>
+                                        <td>
+                                            <strong class="text-author">Johnathan</strong>
+                                            <br />
+                                            <small class="text-muted"><?=$time->niceOutput(strtotime($commit->date))?></small>
+                                        </td>
+                                        <td>
+                                            <span style="font-size: 1.1rem; ">
+                                                <strong class="text-project"><?=$commit->repo_name?></strong>
+                                                <span class="text-muted">#<?=substr($commit->sha, 0, 6)?></span>
+                                            </span>
+                                            <p style="color: #ccc; "><?=$commit->message?></p>
+                                        </td>
+                                    </tr>
+                                <?php
+                            }
                         }
                     ?>
                 </tbody>
