@@ -18,36 +18,26 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 // Function to get the list of repositories for a username
 function getRepositoriesForUser($accessToken)
 {
-    $params = [
-        'visiblity'   => 'all',
-        'affiliation' => 'owner',
-        'per_page'    => 100,
-        'page'        => 1,
-    ];
+    $curl = curl_init();
 
-    $params = http_build_query($params);
+    curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://api.github.com/user/repos?visibility=all&affiliation=owner&per_page=100&page=1',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'GET',
+            CURLOPT_HTTPHEADER => array(
+                'Authorization: Bearer ' . $accessToken
+            ),
+        )
+    );
 
-    $url = "https://api.github.com/user/repos?" . $params;
+    $response = curl_exec($curl);
 
-    echo "SENDING REQUEST TO: " . $url;
-
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, [
-        "Authorization: Bearer " . $accessToken,
-        "X-GitHub-Api-Version: 2022-11-28",
-    ]);
-
-    if (curl_error($ch)) {
-        echo "REQUEST ERROR: " . curl_error($ch) . "\n\n";
-        die();
-    } else {
-        $response = curl_exec($ch);
-    }
-
-    curl_close($ch);
-
+    curl_close($curl);
     return json_decode($response, true);
 }
 
