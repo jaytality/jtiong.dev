@@ -11,7 +11,7 @@
                         $height = ($count / $highest) * 100;
                         $height = ceil($height);
 
-                        echo '<div style="height: ' . $height . '%"></div>';
+                        echo '<div style="height: ' . $height . 'px; "></div>';
                     }
                     echo '</a>';
                 }
