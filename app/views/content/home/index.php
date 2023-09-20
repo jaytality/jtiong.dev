@@ -34,14 +34,14 @@
                             ?>
                                 <tr>
                                     <td>
-                                        <strong class="text-warning">Johnathan</strong>
+                                        <strong class="text-author">Johnathan</strong>
                                         <br />
                                         <small class="text-muted"><?=$time->niceOutput(strtotime($commit->date))?></small>
                                     </td>
                                     <td>
                                         <span style="font-size: 1.1rem; ">
-                                            <strong class="text-success"><?=$commit->repo_name?></strong>
-                                            <strong class="text-muted">#<?=substr($commit->sha, 0, 6)?></strong>
+                                            <strong class="text-project"><?=$commit->repo_name?></strong>
+                                            <span class="text-muted">#<?=substr($commit->sha, 0, 6)?></span>
                                         </span>
                                         <p style="color: #ccc; "><?=$commit->message?></p>
                                     </td>

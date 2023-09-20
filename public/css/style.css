@@ -59,3 +59,11 @@ hr {
     display: block;
     flex-grow: 1;
 }
+
+.text-author {
+    color: #ff2020!important;
+}
+
+.text-project {
+    color: #ffcc00!important;
+}
