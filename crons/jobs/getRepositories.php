@@ -21,19 +21,19 @@ function getRepositoriesForUser($accessToken)
     $curl = curl_init();
 
     curl_setopt_array($curl, array(
-            CURLOPT_URL => 'https://api.github.com/user/repos?visibility=all&affiliation=owner&per_page=100&page=1',
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => '',
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 0,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'GET',
-            CURLOPT_HTTPHEADER => array(
-                'Authorization: Bearer ' . $accessToken
-            ),
-        )
-    );
+        CURLOPT_URL => 'https://api.github.com/user/repos?visibility=all&affiliation=owner&per_page=100&page=1',
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 10,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'GET',
+        CURLOPT_HTTPHEADER => array(
+            'Authorization: Bearer ' . $accessToken,
+            'X-GitHub-Api-Version: 2022-11-28'
+        ),
+    ));
 
     $response = curl_exec($curl);
 
