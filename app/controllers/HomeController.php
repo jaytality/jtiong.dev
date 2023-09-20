@@ -94,7 +94,7 @@ class HomeController extends Controller
         $this->viewData['page']       = $page;
         $this->viewData['highest']    = $highestCommits;
         $this->viewData['statistics'] = $statistics;
-        */
+
 		$this->viewOpts['page']['layout']  = 'default';
         $this->viewOpts['page']['content'] = 'home/index';
         $this->viewOpts['page']['section'] = 'home';
