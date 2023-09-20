@@ -36,7 +36,7 @@
                                     <td>
                                         <strong class="text-warning">Johnathan</strong>
                                         <br />
-                                        <small class="text-muted"><?=$time->niceOutput($commit->time)?></small>
+                                        <small class="text-muted"><?=$time->niceOutput(strtotime($commit->date))?></small>
                                     </td>
                                     <td>
                                         <span style="font-size: 1.1rem; ">
