@@ -36,7 +36,7 @@
                                     <tr>
                                         <td>
                                             <span style="font-size: 1.1rem; ">
-                                                <strong class="text-project"><?=$commit->repo_name?></strong><strong class="text-info">#<?=substr($commit->sha, 0, 6)?></strong> &bull;
+                                                <strong class="text-author"><?=$commit->repo_name?></strong><span class="text-project">#<?=substr($commit->sha, 0, 6)?></span> &bull;
                                                 <small class="text-muted"><?=$time->niceOutput(strtotime($commit->date))?></small>
                                             </span>
                                             <p style="color: #ccc; "><?=$commit->message?></p>
