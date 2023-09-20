@@ -102,7 +102,7 @@ if (is_array($repositories)) {
         }
     }
 } else {
-    echo "Error fetching repositories.";
+    echo "Error fetching repositories.\n\n";
 }
 
  // end of file
