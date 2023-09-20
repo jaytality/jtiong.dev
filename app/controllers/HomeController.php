@@ -75,7 +75,7 @@ class HomeController extends Controller
         $statistics[date('F Y')] = 0;
 
         foreach ($fullCommits as $commit) {
-            $statistics[date('F Y', $commit->date)] += 1;
+            $statistics[date('F Y', strtotime($commit->date))] += 1;
         }
 
         // get the highestcommits for display calculations
