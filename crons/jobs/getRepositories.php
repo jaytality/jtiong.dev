@@ -29,11 +29,12 @@ function getRepositoriesForUser($accessToken)
 
     $url = "https://api.github.com/user/repos?" . $params;
 
+    echo "SENDING REQUEST TO: " . $url;
+
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_HTTPHEADER, [
-        "Accept: application/vnd.github+json",
         "Authorization: Bearer " . $accessToken,
         "X-GitHub-Api-Version: 2022-11-28",
     ]);
