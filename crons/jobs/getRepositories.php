@@ -35,7 +35,7 @@ function getRepositoriesForUser($accessToken, $githubUsername)
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_HTTPHEADER, array(
         "Accept: application/vnd.github+json",
-        "Authorization: Bearer {$accessToken}",
+        "Authorization: token {$accessToken}",
         "X-GitHub-Api-Version: 2022-11-28",
     ));
 
@@ -44,6 +44,27 @@ function getRepositoriesForUser($accessToken, $githubUsername)
 
     return json_decode($response, true);
 }
+
+// authenticate first with curl
+
+$url = "https://api.github.com/octocat";
+
+$authCh = curl_init();
+curl_setopt($authCh, CURLOPT_URL, $url);
+curl_setopt($authCh, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($authCh, CURLOPT_HTTPHEADER, array(
+    "Accept: application/vnd.github+json",
+    "Authorization: token {$accessToken}",
+    "X-GitHub-Api-Version: 2022-11-28",
+));
+
+$auth = curl_exec($authCh);
+$auth = json_decode($auth);
+
+echo print_r($auth, true);
+
+curl_close($authCh);
+die();
 
 // Get the repositories
 $repositories = getRepositoriesForUser($accessToken, $githubUsername);
