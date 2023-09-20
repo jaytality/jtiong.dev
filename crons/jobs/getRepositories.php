@@ -61,7 +61,7 @@ curl_setopt($authCh, CURLOPT_HTTPHEADER, array(
 $auth = curl_exec($authCh);
 $auth = json_decode($auth, true);
 
-echo "AUTH RESPONSE: " . print_r($auth, true);
+echo "AUTH RESPONSE: " . var_dump($auth);
 
 curl_close($authCh);
 die();
