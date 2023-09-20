@@ -41,7 +41,7 @@
                                     <td>
                                         <span style="font-size: 1.1rem; ">
                                             <strong class="text-success"><?=$commit->repo_name?></strong>
-                                            <strong class="text-muted">#<?=$commit->sha?></strong>
+                                            <strong class="text-muted">#<?=substr($commit->sha, 0, 6)?></strong>
                                         </span>
                                         <p style="color: #ccc; "><?=$commit->message?></p>
                                     </td>
