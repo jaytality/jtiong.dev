@@ -11,6 +11,12 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 
 class HomeController extends Controller
 {
+    /**
+     * generates a graph of commits and log of commits that is visible as the main index page of jtiong.dev
+     *
+     * @param integer $page
+     * @return void
+     */
     function index($page = 0)
     {
         $homeModel = new HomeModel;
@@ -93,6 +99,29 @@ class HomeController extends Controller
         $this->viewOpts['page']['title']   = 'Home';
 
         $this->view->load($this->viewOpts, $this->viewData);
+    }
+
+    /**
+     * initiate the login with discord process - redirects user to discord verification
+     *
+     * @return void
+     */
+    function login()
+    {
+        header("Location: " . getConfig('discord.oauth-url'));
+        exit();
+    }
+
+    /**
+     * log a user out - destroy all session stuff and redirect to index /
+     *
+     * @return void
+     */
+    function logout()
+    {
+        session_destroy();
+        header("Location: " . getConfig('host'));
+        exit();
     }
 }
 
