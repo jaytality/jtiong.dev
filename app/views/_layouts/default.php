@@ -25,7 +25,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
             <div class="container">
                 <a class="navbar-brand" href="/"><img src="/public/img/logo.svg" alt="" style="height: 32px; "></a>
-                <a href="/login">log in</a>
+                <a href="/login" class="nav-link">log in</a>
             </div>
         </nav>
 
