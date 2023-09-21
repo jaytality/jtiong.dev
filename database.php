@@ -9,6 +9,8 @@
 
 require_once 'vendor/autoload.php';
 
+define('ROOT', dirname(__FILE__));
+
 use Illuminate\Database\Capsule\Manager as Capsule;
 $capsule = new Capsule;
 
