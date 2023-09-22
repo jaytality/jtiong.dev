@@ -6,8 +6,8 @@
 
 use ILluminate\Database\Capsule\Manager as Capsule;
 
-if (!Capsule::schema()->hasTable('jtdev_users')) {
-    Capsule::schema()->create('jtdev_users', function($table) {
+if (!Capsule::schema()->hasTable('jtdev_repodocs')) {
+    Capsule::schema()->create('jtdev_repodocs', function($table) {
         $table->increments('id');
         $table->string('repo');                         // repository name
         $table->string('gitbook');                      // gitbook url
