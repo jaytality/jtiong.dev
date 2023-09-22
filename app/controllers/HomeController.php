@@ -108,8 +108,12 @@ class HomeController extends Controller
      */
     function login()
     {
-        header("Location: " . getConfig('discord.oauth-url'));
-        exit();
+		$this->viewOpts['page']['layout']  = 'default';
+        $this->viewOpts['page']['content'] = 'home/login';
+        $this->viewOpts['page']['section'] = 'home';
+        $this->viewOpts['page']['title']   = 'Home';
+
+        $this->view->load($this->viewOpts, $this->viewData);
     }
 
     /**
