@@ -1,3 +1,6 @@
 .env.yaml
 composer.lock
 vendor/
+
+.env.yaml.old
+.test.php
