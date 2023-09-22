@@ -26,7 +26,7 @@
     ?>
     <div class="row">
         <div class="col-md-12">
-            <table class="table table-hover table-borderless table-dark">
+            <table class="table table-hover table-borderless">
                 <tbody>
                     <?php
                         foreach ($commits as $commit) {
