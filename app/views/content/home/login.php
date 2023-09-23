@@ -4,13 +4,13 @@
         <div class="card-header">Please Log In</div>
         <div class="card-body">
             <form action="/" method="POST">
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" class="form-control" id="email">
+                <div class="form-group row">
+                    <label for="email" class="col-md-3 text-right">Email Address</label>
+                    <input type="email" class="form-control col-md-9" id="email">
                 </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" class="form-control" id="password">
+                <div class="form-group row">
+                    <label for="password" class="col-md-3 text-right">Password</label>
+                    <input type="password" class="form-control col-md-9" id="password">
                 </div>
                 <button class="btn btn-primary">Log In</button>
             </form>
