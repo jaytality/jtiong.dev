@@ -1,10 +1,19 @@
 <div class="container">
 
-    <div class="card border-secondary mb-3" style="max-width: 20rem;">
-        <div class="card-header">Log In</div>
+    <div class="card border-secondary mb-3" style="margin-top: 3rem;">
+        <div class="card-header">Please Log In</div>
         <div class="card-body">
-            <h4 class="card-title">Secondary card title</h4>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <form action="/" method="POST">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" class="form-control" id="email">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password">
+                </div>
+                <button class="btn btn-primary">Log In</button>
+            </form>
         </div>
     </div>
 
