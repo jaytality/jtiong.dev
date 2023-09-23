@@ -12,7 +12,11 @@
                     <label for="password" class="col-md-3 text-right">Password</label>
                     <input type="password" class="form-control col-md-9" id="password">
                 </div>
-                <button class="btn btn-primary">Log In</button>
+                <div class="form-group row">
+                    <div class="col-md-3 offset-md-3">
+                        <button class="btn btn-primary">Log In</button>
+                    </div>
+                </div>
             </form>
         </div>
     </div>
