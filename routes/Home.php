@@ -18,6 +18,11 @@ $base->get("/login", function () {
     return $controller->{'login'}();
 });
 
+$base->post("/login", function () {
+    $controller = new spark\Controllers\HomeController;
+    return $controller->{'login'}();
+});
+
 /**
  * /logout
  *
