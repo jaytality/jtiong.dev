@@ -116,7 +116,7 @@ class HomeController extends Controller
             if ($authenticated == false) {
                 $this->viewData['error'] = "Invalid Authentication";
             } else {
-                header("Location: " . getConfig('host'));
+                header("Location: https://" . getConfig('host'));
                 exit();
             }
         }
@@ -137,7 +137,7 @@ class HomeController extends Controller
     function logout()
     {
         session_destroy();
-        header("Location: " . getConfig('host'));
+        header("Location: https://" . getConfig('host'));
         exit();
     }
 }
