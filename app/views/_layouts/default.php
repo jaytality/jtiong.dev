@@ -45,10 +45,10 @@
                             <?php
                         } else {
                             ?>
+                            <a href="/login" class="nav-link">log in</a>
                             <?php
                         }
                         ?>
-                        <a href="/login" class="nav-link">log in</a>
                     </li>
                 </ul>
             </div>

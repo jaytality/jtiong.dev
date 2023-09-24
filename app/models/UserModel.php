@@ -23,6 +23,7 @@ class UserModel extends Model
         if ($user->isEmpty()) {
             return false;
         } else {
+            dd($user);
             if (password_verify($password, $user->password)) {
                 $_SESSION['authenticated'] = true;
                 $_SESSION['user']['id']    = $user->id;
