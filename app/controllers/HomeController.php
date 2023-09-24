@@ -111,7 +111,7 @@ class HomeController extends Controller
     {
         $user = new UserModel;
 
-        if (!empty($_POST)) {
+        if (!empty($_POST['email'])) {
             $authenticated = $user->authenticate($_POST['email'], $_POST['password']);
             if ($authenticated == false) {
                 $this->viewData['error'] = "Invalid Authentication";
