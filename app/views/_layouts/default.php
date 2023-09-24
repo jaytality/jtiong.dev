@@ -21,6 +21,21 @@
 </head>
 
 <body class="d-flex flex-column h-100">
+    <?php
+    if (!empty($error)) {
+        ?>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="alert alert-dismissible alert-danger">
+                        <?=$error?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php
+    }
+    ?>
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">

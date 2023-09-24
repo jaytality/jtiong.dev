@@ -1,17 +1,4 @@
 <div class="container">
-    <?php
-    if (!empty($error)) {
-        ?>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="alert alert-dismissible alert-danger">
-                    <?=$error?>
-                </div>
-            </div>
-        </div>
-        <?php
-    }
-    ?>
     <div class="card border-secondary mb-3" style="margin-top: 3rem;">
         <div class="card-header">Please Log In</div>
         <div class="card-body">
