@@ -18,12 +18,11 @@ class UserModel extends Model
     {
         $user = Capsule::table('jtdev_users')
             ->where('email', '=', $email)
-            ->get();
+            ->first();
 
-        if ($user->isEmpty()) {
+        if (empty($user)) {
             return false;
         } else {
-            dd($user);
             if (password_verify($password, $user->password)) {
                 $_SESSION['authenticated'] = true;
                 $_SESSION['user']['id']    = $user->id;
