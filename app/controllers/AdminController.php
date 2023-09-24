@@ -12,13 +12,7 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 
 class AdminController extends Controller
 {
-    /**
-     * generates a graph of commits and log of commits that is visible as the main index page of jtiong.dev
-     *
-     * @param integer $page
-     * @return void
-     */
-    function index($page = 0)
+    function index()
     {
 		$this->viewOpts['page']['layout']  = 'default';
         $this->viewOpts['page']['content'] = 'admin/index';
