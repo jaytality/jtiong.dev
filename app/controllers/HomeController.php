@@ -6,6 +6,7 @@ namespace spark\Controllers;
 
 use \spark\Core\Controller as Controller;
 use \spark\Models\HomeModel;
+use \spark\Models\UserModel;
 use \spark\Helpers\Time;
 use Illuminate\Database\Capsule\Manager as Capsule;
 
@@ -108,6 +109,18 @@ class HomeController extends Controller
      */
     function login()
     {
+        $user = new UserModel;
+
+        if (!empty($_POST)) {
+            $authenticated = $user->authenticate($_POST['email'], $_POST['password']);
+            if ($authenticated == false) {
+                $this->viewData['error'] = "Invalid Authentication";
+            } else {
+                header("Location: " . getConfig('host'));
+                exit();
+            }
+        }
+
 		$this->viewOpts['page']['layout']  = 'default';
         $this->viewOpts['page']['content'] = 'home/login';
         $this->viewOpts['page']['section'] = 'home';
