@@ -71,12 +71,23 @@
     </main>
 
     <footer class="footer mt-auto py-3">
-        <div class="container text-center">
-            <hr>
-            <small class="text-muted">Copyright &copy; Johnathan Tiong, 2022 - <?=date('Y')?>. All Rights Reserved.</small>
-            <br />
-            <br />
-<pre><?=print_r($_SESSION, true)?></pre>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <hr>
+                    <small class="text-muted">Copyright &copy; Johnathan Tiong, 2022 - <?=date('Y')?>. All Rights Reserved.</small>
+                    <br />
+                    <br />
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <pre><?=print_r($_SESSION, true)?></pre>
+                </div>
+            </div>
         </div>
     </footer>
 
