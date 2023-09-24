@@ -74,6 +74,9 @@
         <div class="container text-center">
             <hr>
             <small class="text-muted">Copyright &copy; Johnathan Tiong, 2022 - <?=date('Y')?>. All Rights Reserved.</small>
+            <br />
+            <br />
+<pre><?=print_r($_SESSION, true)?></pre>
         </div>
     </footer>
 
