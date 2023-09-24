@@ -15,7 +15,7 @@
     <div class="card border-secondary mb-3" style="margin-top: 3rem;">
         <div class="card-header">Please Log In</div>
         <div class="card-body">
-            <form action="/" method="POST">
+            <form action="/login" method="POST">
                 <div class="form-group row">
                     <label for="email" class="col-md-3 col-form-label text-right">Email Address</label>
                     <input type="email" class="form-control col-md-6" id="email">
