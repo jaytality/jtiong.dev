@@ -27,7 +27,8 @@
                 <a class="navbar-brand" href="/"><img src="/public/img/logo.svg" alt="" style="height: 32px; "></a>
                 <ul class="navbar-nav ml-auto">
                     <?php
-                    if ($_SESSION['authenticated']) {
+                    if (!empty($_SESSION['authenticated']) &&
+                        $_SESSION['authenticated']) {
                         ?>
                         <li class="nav-item">
                             <a href="/admin" class="nav-link">admin</a>
@@ -37,7 +38,8 @@
                     ?>
                     <li class="nav-item">
                         <?php
-                        if ($_SESSION['authenticated']) {
+                        if (!empty($_SESSION['authenticated']) &&
+                            $_SESSION['authenticated']) {
                             ?>
                             <a href="/logout" class="nav-link">log out</a>
                             <?php
