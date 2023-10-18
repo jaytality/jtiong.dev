@@ -6,6 +6,12 @@ $base->get("/", function () {
     return $controller->{'index'}();
 });
 
+// GET /page
+$base->get("/:page", function ($page) {
+    $controller = new spark\Controllers\HomeController;
+    return $controller->{'index'}($page);
+});
+
 /**
  * /login
  *
