@@ -75,6 +75,10 @@ class HomeController extends Controller
 
         echo '<pre>';
 
+        foreach ($statistics as $key => $value) {
+            echo $key . '<br>';
+        }
+
         foreach ($commits as $commit) {
             $statistics[date('F Y', strtotime($commit->date))] += 1;
         }
