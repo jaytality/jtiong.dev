@@ -29,41 +29,12 @@ class HomeController extends Controller
 
         // total number of pages in pagination
         $commitCount = Capsule::table('jtdev_commits')->count();
-        // $totalPages = $commitCount / $limit;
-        // $totalPages = ceil($totalPages);
-
-        // if ( // if we're within the first 5 pages of the list...
-        //     $page >= 0 &&
-        //     $page <= 4
-        // ) {
-        //     // hard code the pages to be from 2 to 5
-        //     $from = 2;
-        //     $to = 5;
-        // } else if (
-        //     // current page is within the range of the last page
-        //     $page >= $totalPages - 2
-        // ) {
-        //     $from = $totalPages - 5;
-        //     $to = $totalPages - 1;
-        // } else {
-        //     $from = $page - 2;
-        //     $to = $page + 2;
-        // }
-
-        // $offset = $page * $limit;
-
-        // fetch all commits
-        // $commits = $homeModel->getCommits($limit, $offset);
 
         //
         // BUILDING COMMIT STATS GRAPH
         //
         $commits = $homeModel->getCommitsTimeline();
-        // $oldest = $homeModel->getOldestCommit();
-        // $newest = $homeModel->getNewestCommit();
-
-        // $commitStart = $month = strtotime($oldest->date);
-        // $commitEnd   = strtotime($newest->date);
+        $oldest = $homeModel->getOldestCommit();
 
         // build the statistics array
         $statistics = [];
@@ -81,9 +52,11 @@ class HomeController extends Controller
 
         // get the highestcommits for display calculations
         $highestCommits = 0;
+        $highestMonth = "";
         foreach ($statistics as $stat => $count) {
             if ($count > $highestCommits) {
                 $highestCommits = $count;
+                $highestMonth = $stat;
             }
         }
 
@@ -93,7 +66,10 @@ class HomeController extends Controller
         // $this->viewData['end']        = $totalPages - 1;
         $this->viewData['commits']    = $commits;
         // $this->viewData['page']       = $page;
-        $this->viewData['highest']    = $highestCommits;
+        $this->viewData['highestCommit']    = $highestCommits;
+        $this->viewData['highestMonth']    = $highestMonth;
+        $this->viewData['commitCount'] = $commitCount;
+        $this->viewData['oldestCommit'] = date('F Y', strtotime($oldest->date));
         $this->viewData['statistics'] = $statistics;
 
 		$this->viewOpts['page']['layout']  = 'default';
