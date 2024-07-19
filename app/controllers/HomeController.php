@@ -71,7 +71,7 @@ class HomeController extends Controller
         echo '<pre>';
 
         foreach ($commits as $commit) {
-            echo $commit->date . "<br>";
+            echo date('F Y', strtotime($commit->date)) . "<br>";
 
             // // $monthYear = date('F Y', strtotime($))
             // if (!array_key_exists($statistics[date('F Y', strtotime($commit->date))], $statistics)) {
