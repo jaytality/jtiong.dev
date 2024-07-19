@@ -74,13 +74,13 @@ class HomeController extends Controller
         }
 
         echo '<pre>';
-        print_r($statistics, true);
-        echo '<br>';
 
         foreach ($commits as $commit) {
-            echo $commit->date . '<br>';
-            // $statistics[date('F Y', strtotime($commit->date))] += 1;
+            $statistics[date('F Y', strtotime($commit->date))] += 1;
         }
+
+        print_r($statistics, true);
+        echo '<br>';
 
         die();
 
