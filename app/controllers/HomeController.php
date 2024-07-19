@@ -70,7 +70,9 @@ class HomeController extends Controller
 
         // build stats of each Month Year (e.g. August 2024) in $statistics
         for ($i = 1; $i <= 12; $i++) {
-            $statistics[date("F Y", mktime(0, 0, 0, $i, 0, date('Y', strtotime(time()))))] = 0;
+            $date = DateTime::createFromFormat('!m', $month);
+            $monthYearKey = $date->format('F Y');
+            $statistics[$monthYearKey] = 0;
         }
 
         echo '<pre>';
