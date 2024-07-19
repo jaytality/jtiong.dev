@@ -26,20 +26,26 @@ class HomeModel extends Model
     }
 
     /**
-     * fetch all the commits in my account
+     * fetch all the commits in my account based off a page offset & limit
      *
      * @param integer $limit
      * @param integer $offset
-     * @param boolean $all
      * @return void
      */
-    public function getCommits($limit = 0, $offset = 0, $all = false)
+    public function getCommits($limit = 0, $offset = 0)
     {
         $commits = Capsule::table('jtdev_commits')
             ->orderBy('date', 'desc')
             ->offset($offset)
             ->limit($limit)
             ->get();
+
+        return $commits;
+    }
+
+    public function getCommitsTimeline($all = false)
+    {
+        $commits = Capsule::table('jtdev_commits')->orderBy('date', 'asc')->get();
 
         $managedCommits = [];
 
@@ -50,11 +56,6 @@ class HomeModel extends Model
         }
 
         return $managedCommits;
-    }
-
-    public function getCommitsTimeline()
-    {
-        return Capsule::table('jtdev_commits')->orderBy('date', 'asc')->get();
     }
 }
 
