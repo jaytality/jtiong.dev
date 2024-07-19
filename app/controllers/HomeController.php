@@ -68,24 +68,16 @@ class HomeController extends Controller
         // build the statistics array
         $statistics = [];
 
-        echo '<pre>';
-
         foreach ($commits as $commit) {
-            echo date('F Y', strtotime($commit->date)) . "<br>";
+            $key = date('F Y', strtotime($commit->date));
 
-            // // $monthYear = date('F Y', strtotime($))
-            // if (!array_key_exists($statistics[date('F Y', strtotime($commit->date))], $statistics)) {
-            //     $statistics[date('F Y', strtotime($commit->date))] = 0;
-            // }
+            // $monthYear = date('F Y', strtotime($))
+            if (!array_key_exists($key, $statistics)) {
+                $statistics[$key] = 0;
+            }
 
-            // $statistics[date('F Y', strtotime($commit->date))] += 1;
+            $statistics[$key] += 1;
         }
-        die();
-        foreach ($statistics as $key => $value) {
-            echo $key . ': ' . $value . '<br>';
-        }
-
-        die();
 
         // get the highestcommits for display calculations
         $highestCommits = 0;

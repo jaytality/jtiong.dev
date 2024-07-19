@@ -46,7 +46,7 @@ class HomeModel extends Model
 
     public function getCommitsTimeline($all = false)
     {
-        $commits = Capsule::table('jtdev_commits')->orderBy('date', 'asc')->get();
+        $commits = Capsule::table('jtdev_commits')->orderBy('date', 'desc')->get();
 
         $managedCommits = [];
 
