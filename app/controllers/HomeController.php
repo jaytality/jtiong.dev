@@ -9,6 +9,7 @@ use \spark\Models\HomeModel;
 use \spark\Models\UserModel;
 use \spark\Helpers\Time;
 use Illuminate\Database\Capsule\Manager as Capsule;
+use \DateTime as DateTime;
 
 class HomeController extends Controller
 {
@@ -29,11 +30,20 @@ class HomeController extends Controller
         //
         // BUILDING COMMIT STATS GRAPH
         //
-        $commits = $homeModel->getCommitsTimeline();
+        $commits = $homeModel->getCommitsTimeline(true);
         $oldest = $homeModel->getOldestCommit();
+        $newest = $homeModel->getNewestCommit();
+
+        // build the statistics array
+        $commitStart = $month = strtotime($oldest->date);
+        $commitEnd   = strtotime($newest->date);
 
         // build the statistics array
         $statistics = [];
+        while($month < $commitEnd) {
+            $statistics[date('F Y', $month)] = 0;
+            $month = strtotime("+1 month", $month);
+        }
 
         foreach ($commits as $commit) {
             $key = date('F Y', strtotime($commit->date));
@@ -45,9 +55,6 @@ class HomeController extends Controller
 
             $statistics[$key] += 1;
         }
-
-        // reverse array for left to right stats graph display
-        $statistics = array_reverse($statistics);
 
         // get the highestcommits for display calculations
         $highestCommits = 0;
@@ -64,6 +71,7 @@ class HomeController extends Controller
         $this->viewData['highestMonth']  = $highestMonth;
         $this->viewData['commitCount']   = $commitCount;
         $this->viewData['oldestCommit']  = date('F Y', strtotime($oldest->date));
+        $this->viewData['lifespanDays']  = $this->getLifespanDays($oldest->date, $newest->date);
         $this->viewData['statistics']    = $statistics;
 
 		$this->viewOpts['page']['layout']  = 'default';
@@ -111,6 +119,16 @@ class HomeController extends Controller
         session_destroy();
         header("Location: https://" . getConfig('host'));
         exit();
+    }
+
+    function getLifespanDays($startDate, $endDate)
+    {
+        $start = new DateTime($startDate);
+        $end = new DateTime($endDate);
+
+        $interval = $start->diff($end);
+
+        return $interval->days;
     }
 }
 

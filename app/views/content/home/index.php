@@ -1,7 +1,15 @@
 <div class="container">
     <!-- commit graph -->
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-12" style="padding: 1.5rem 0 0 1.5rem; ">
+            <p>
+                <?='<strong>' . $commitCount . '</strong> commits since <strong>' . $oldestCommit . '</strong> - ' . number_format(($commitCount / $lifespanDays), 2) . ' commits per day!'?><br />
+                <strong>Most Commits:</strong> <?=$highestCommit . ' in ' . $highestMonth?><br />
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
             <div class="barchart">
                 <?php
                 foreach ($statistics as $stat => $count) {
@@ -18,20 +26,13 @@
                 ?>
             </div>
         </div>
-        <div class="col-md-8" style="padding: 1.5rem 0 0 1.5rem; ">
-            <h3>Overview...</h3>
-            <p>
-                <strong>Lifetime Commits:</strong> <?=$commitCount . ' since ' . $oldestCommit?><br />
-                <strong>Most Commits:</strong> <?=$highestCommit . ' in ' . $highestMonth?><br />
-            </p>
-        </div>
     </div>
 
     <!-- commit messages -->
     <div class="row">
         <div class="col-md-12">
             <hr />
-            <table class="table table-hover table-borderless">
+            <table class="table table-hover table-condensed table-borderless">
                 <tbody>
                     <?php
                         foreach ($commits as $commit) {
@@ -39,10 +40,14 @@
                                 $time = new \spark\Helpers\Time;
                                 ?>
                                     <tr>
+                                        <td class="text-right">
+                                            <strong><a href="/project/<?=$commit->repo_name?>" class="text-author"><?=$commit->repo_name?></a></strong>
+                                            <br />
+                                            <small class="text-muted"><?=date("d M Y (H:i:s)", strtotime($commit->date))?></small>
+                                        </td>
                                         <td>
                                             <span style="font-size: 1.1rem; ">
-                                                <strong><a href="/project/<?=$commit->repo_name?>" class="text-author"><?=$commit->repo_name?></a></strong><span class="text-project">#<?=substr($commit->sha, 0, 6)?></span> &bull;
-                                                <small class="text-muted"><?=date("d M Y (H:i:s)", strtotime($commit->date))?></small>
+                                                <span class="text-project">#<?=substr($commit->sha, 0, 6)?></span>
                                             </span>
                                             <p style="color: #ccc; "><?=$commit->message?></p>
                                         </td>
