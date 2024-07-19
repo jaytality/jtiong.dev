@@ -50,6 +50,8 @@ class HomeController extends Controller
         }
 
         $offset = $page * $limit;
+
+        // fetch all commits
         $commits = $homeModel->getCommits($limit, $offset);
 
         //

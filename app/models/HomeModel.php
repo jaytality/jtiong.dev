@@ -25,9 +25,18 @@ class HomeModel extends Model
         return $newestCommit;
     }
 
-    public function getCommits($limit = 0, $offset = 0)
+    /**
+     * fetch all the commits in my account
+     *
+     * @param integer $limit
+     * @param integer $offset
+     * @param boolean $all
+     * @return void
+     */
+    public function getCommits($limit = 0, $offset = 0, $all = false)
     {
         $commits = Capsule::table('jtdev_commits')
+            ->where('date', '>=', date('Y-m-d', now()))
             ->orderBy('date', 'desc')
             ->offset($offset)
             ->limit($limit)
