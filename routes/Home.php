@@ -1,17 +1,5 @@
 <?php
 
-// GET /
-$base->get("/", function () {
-    $controller = new spark\Controllers\HomeController;
-    return $controller->{'index'}();
-});
-
-// GET /page
-$base->get("/:page", function ($page) {
-    $controller = new spark\Controllers\HomeController;
-    return $controller->{'index'}($page);
-});
-
 /**
  * /login
  *
@@ -39,4 +27,16 @@ $base->post("/login", function () {
 $base->get("/logout", function () {
     $controller = new spark\Controllers\HomeController;
     return $controller->{'logout'}();
+});
+
+// GET /page
+$base->get("/:page", function ($page) {
+    $controller = new spark\Controllers\HomeController;
+    return $controller->{'index'}($page);
+});
+
+// GET /
+$base->get("/", function () {
+    $controller = new spark\Controllers\HomeController;
+    return $controller->{'index'}();
 });
