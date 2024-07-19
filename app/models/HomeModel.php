@@ -4,6 +4,7 @@ namespace spark\Models;
 
 use \spark\Core\Model as Model;
 use Illuminate\Database\Capsule\Manager as Capsule;
+use \DateTime as DateTime;
 
 class HomeModel extends Model
 {
