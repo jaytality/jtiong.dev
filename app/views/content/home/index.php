@@ -32,7 +32,7 @@
     <div class="row">
         <div class="col-md-12">
             <hr />
-            <h3>Recent Commits <small class="text-muted">50 messages</small></h3>
+            <h3>Recent Commits <small class="text-muted">last 50</small></h3>
             <table class="table table-hover table-condensed table-borderless">
                 <tbody>
                     <?php
@@ -47,13 +47,13 @@
                                 ?>
                                     <tr>
                                         <td class="text-right">
-                                            <strong><a href="/project/<?=$commit->repo_name?>" class="text-author"><?=$commit->repo_name?></a></strong>
+                                            <strong><a href="/project/<?=$commit->repo_name?>" class="text-danger"><?=$commit->repo_name?></a></strong>
                                             <br />
                                             <small class="text-muted"><?=date("d M Y (H:i:s)", strtotime($commit->date))?></small>
                                         </td>
                                         <td>
                                             <span style="font-size: 1.1rem; ">
-                                                <span class="text-project">#<?=substr($commit->sha, 0, 6)?></span>
+                                                <small class="text-warning">#<?=substr($commit->sha, 0, 6)?></small>
                                             </span>
                                             <p style="color: #ccc; "><?=$commit->message?></p>
                                         </td>
