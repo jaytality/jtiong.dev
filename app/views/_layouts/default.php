@@ -37,7 +37,7 @@
     }
     ?>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-danger">
             <div class="container">
                 <a class="navbar-brand" href="/"><img src="/public/img/logo.svg" alt="" style="height: 32px; "></a>
                 <ul class="navbar-nav ml-auto">

@@ -32,11 +32,17 @@
     <div class="row">
         <div class="col-md-12">
             <hr />
+            <h3>Recent Commits <small class="text-muted">50 messages</small></h3>
             <table class="table table-hover table-condensed table-borderless">
                 <tbody>
                     <?php
+                        $limit = 1;
                         foreach ($commits as $commit) {
                             if ($commit->visible) {
+                                if ($limit >= 50) {
+                                    break;
+                                }
+
                                 $time = new \spark\Helpers\Time;
                                 ?>
                                     <tr>
@@ -53,6 +59,7 @@
                                         </td>
                                     </tr>
                                 <?php
+                                $limit++;
                             }
                         }
                     ?>
