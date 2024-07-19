@@ -23,34 +23,34 @@ class HomeController extends Controller
     {
         $homeModel = new HomeModel;
 
-        $limit = 25;    // this is the number of commit messages to show per page
-        $from  = 0;     // starting visible pagination number (not including 1 and ...)
-        $to    = 0;     // last visible pagination number (not including end and ...)
+        // $limit = 25;    // this is the number of commit messages to show per page
+        // $from  = 0;     // starting visible pagination number (not including 1 and ...)
+        // $to    = 0;     // last visible pagination number (not including end and ...)
 
         // total number of pages in pagination
         $commitCount = Capsule::table('jtdev_commits')->count();
-        $totalPages = $commitCount / $limit;
-        $totalPages = ceil($totalPages);
+        // $totalPages = $commitCount / $limit;
+        // $totalPages = ceil($totalPages);
 
-        if ( // if we're within the first 5 pages of the list...
-            $page >= 0 &&
-            $page <= 4
-        ) {
-            // hard code the pages to be from 2 to 5
-            $from = 2;
-            $to = 5;
-        } else if (
-            // current page is within the range of the last page
-            $page >= $totalPages - 2
-        ) {
-            $from = $totalPages - 5;
-            $to = $totalPages - 1;
-        } else {
-            $from = $page - 2;
-            $to = $page + 2;
-        }
+        // if ( // if we're within the first 5 pages of the list...
+        //     $page >= 0 &&
+        //     $page <= 4
+        // ) {
+        //     // hard code the pages to be from 2 to 5
+        //     $from = 2;
+        //     $to = 5;
+        // } else if (
+        //     // current page is within the range of the last page
+        //     $page >= $totalPages - 2
+        // ) {
+        //     $from = $totalPages - 5;
+        //     $to = $totalPages - 1;
+        // } else {
+        //     $from = $page - 2;
+        //     $to = $page + 2;
+        // }
 
-        $offset = $page * $limit;
+        // $offset = $page * $limit;
 
         // fetch all commits
         // $commits = $homeModel->getCommits($limit, $offset);
@@ -59,11 +59,11 @@ class HomeController extends Controller
         // BUILDING COMMIT STATS GRAPH
         //
         $commits = $homeModel->getCommitsTimeline();
-        $oldest = $homeModel->getOldestCommit();
-        $newest = $homeModel->getNewestCommit();
+        // $oldest = $homeModel->getOldestCommit();
+        // $newest = $homeModel->getNewestCommit();
 
-        $commitStart = $month = strtotime($oldest->date);
-        $commitEnd   = strtotime($newest->date);
+        // $commitStart = $month = strtotime($oldest->date);
+        // $commitEnd   = strtotime($newest->date);
 
         // build the statistics array
         $statistics = [];
@@ -88,11 +88,11 @@ class HomeController extends Controller
         }
 
         // navigation variables
-        $this->viewData['from']       = $from;
-        $this->viewData['to']         = $to;
-        $this->viewData['end']        = $totalPages - 1;
+        // $this->viewData['from']       = $from;
+        // $this->viewData['to']         = $to;
+        // $this->viewData['end']        = $totalPages - 1;
         $this->viewData['commits']    = $commits;
-        $this->viewData['page']       = $page;
+        // $this->viewData['page']       = $page;
         $this->viewData['highest']    = $highestCommits;
         $this->viewData['statistics'] = $statistics;
 

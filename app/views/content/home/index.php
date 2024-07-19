@@ -22,7 +22,7 @@
 
     <!-- commit messages -->
     <?php
-        include(views . '/_components/pagination.php');
+        // include(views . '/_components/pagination.php');
     ?>
     <div class="row">
         <div class="col-md-12">
@@ -51,6 +51,6 @@
         </div>
     </div>
     <?php
-        include(views . '/_components/pagination.php');
+        // include(views . '/_components/pagination.php');
     ?>
 </div>
