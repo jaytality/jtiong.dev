@@ -48,6 +48,8 @@ class HomeModel extends Model
                 $managedCommits[] = $commit;
             }
         }
+        echo '<pre>' . print_r($managedCommits, true) . '</pre>';
+        die();
 
         return $managedCommits;
     }
