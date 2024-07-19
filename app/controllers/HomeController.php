@@ -68,23 +68,19 @@ class HomeController extends Controller
         // build the statistics array
         $statistics = [];
 
-        // build stats of each Month Year (e.g. August 2024) in $statistics
-        for ($i = 1; $i <= 12; $i++) {
-            $statistics[date("F Y", mktime(0, 0, 0, $i, 10))] = 0;
-        }
-
         echo '<pre>';
 
-        foreach ($statistics as $key => $value) {
-            echo $key . '<br>';
-        }
-
         foreach ($commits as $commit) {
+            if (!array_key_exists($statistics[date('F Y', strtotime($commit->date))], $statistics)) {
+                $statistics[date('F Y', strtotime($commit->date))] = 0;
+            }
+
             $statistics[date('F Y', strtotime($commit->date))] += 1;
         }
 
-        print_r($statistics, true);
-        echo '<br>';
+        foreach ($statistics as $key => $value) {
+            echo $key . ': ' . $value . '<br>';
+        }
 
         die();
 
