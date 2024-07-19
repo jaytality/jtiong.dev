@@ -36,13 +36,20 @@ class HomeModel extends Model
     public function getCommits($limit = 0, $offset = 0, $all = false)
     {
         $commits = Capsule::table('jtdev_commits')
-            ->where('date', '>=', date('Y-m-d', strtotime(time())))
             ->orderBy('date', 'desc')
             ->offset($offset)
             ->limit($limit)
             ->get();
 
-        return $commits;
+        $managedCommits = [];
+
+        foreach ($commits as $commit) {
+            if (strtotime($commit->date) >= strtotime(date('Y') . '-01-01')) {
+                $managedCommits[] = $commit;
+            }
+        }
+
+        return $managedCommits;
     }
 
     public function getCommitsTimeline()
