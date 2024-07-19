@@ -53,12 +53,12 @@ class HomeController extends Controller
         $offset = $page * $limit;
 
         // fetch all commits
-        $commits = $homeModel->getCommits($limit, $offset);
+        // $commits = $homeModel->getCommits($limit, $offset);
 
         //
         // BUILDING COMMIT STATS GRAPH
         //
-        $fullCommits = $homeModel->getCommitsTimeline();
+        $commits = $homeModel->getCommitsTimeline();
         $oldest = $homeModel->getOldestCommit();
         $newest = $homeModel->getNewestCommit();
 
@@ -67,16 +67,19 @@ class HomeController extends Controller
 
         // build the statistics array
         $statistics = [];
-        while($month < $commitEnd) {
-            $statistics[date('F Y', $month)] = 0;
-            $month = strtotime("+1 month", $month);
+
+        // build stats of each Month Year (e.g. August 2024) in $statistics
+        for ($i = 1; $i <= 12; $i++) {
+            $statistics[date("F Y", mktime(0, 0, 0, $i, 0, date('Y', strtotime(time()))))] = 0;
         }
 
-        // always add current month too
-        $statistics[date('F Y')] = 0;
+        echo '<pre>';
+        print_r($statistics, true);
+        echo '<br>';
 
-        foreach ($fullCommits as $commit) {
-            $statistics[date('F Y', strtotime($commit->date))] += 1;
+        foreach ($commits as $commit) {
+            dd($commit->date);
+            // $statistics[date('F Y', strtotime($commit->date))] += 1;
         }
 
         // get the highestcommits for display calculations
