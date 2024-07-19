@@ -14,6 +14,7 @@ class HomeController extends Controller
 {
     /**
      * generates a graph of commits and log of commits that is visible as the main index page of jtiong.dev
+     * this will ONLY show commits from the current calendar year
      *
      * @param integer $page
      * @return void
@@ -57,7 +58,6 @@ class HomeController extends Controller
         //
         // BUILDING COMMIT STATS GRAPH
         //
-        // $fullCommits = R::find('commits', ' ORDER BY time ASC');
         $fullCommits = $homeModel->getCommitsTimeline();
         $oldest = $homeModel->getOldestCommit();
         $newest = $homeModel->getNewestCommit();
