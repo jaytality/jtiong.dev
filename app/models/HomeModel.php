@@ -55,6 +55,10 @@ class HomeModel extends Model
             }
         }
 
+        if ($all) {
+            return $commits;
+        }
+
         return $managedCommits;
     }
 }
