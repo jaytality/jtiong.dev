@@ -18,7 +18,7 @@
                 ?>
             </div>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-8" style="padding: 1.5rem 0 0 1.5rem; ">
             <h3>Overview...</h3>
             <p>
                 <strong>Lifetime Commits:</strong> <?=$commitCount . ' since ' . $oldestCommit?><br />

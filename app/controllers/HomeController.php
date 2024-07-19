@@ -23,10 +23,6 @@ class HomeController extends Controller
     {
         $homeModel = new HomeModel;
 
-        // $limit = 25;    // this is the number of commit messages to show per page
-        // $from  = 0;     // starting visible pagination number (not including 1 and ...)
-        // $to    = 0;     // last visible pagination number (not including end and ...)
-
         // total number of pages in pagination
         $commitCount = Capsule::table('jtdev_commits')->count();
 
@@ -50,6 +46,9 @@ class HomeController extends Controller
             $statistics[$key] += 1;
         }
 
+        // reverse array for left to right stats graph display
+        $statistics = array_reverse($statistics);
+
         // get the highestcommits for display calculations
         $highestCommits = 0;
         $highestMonth = "";
@@ -60,17 +59,12 @@ class HomeController extends Controller
             }
         }
 
-        // navigation variables
-        // $this->viewData['from']       = $from;
-        // $this->viewData['to']         = $to;
-        // $this->viewData['end']        = $totalPages - 1;
-        $this->viewData['commits']    = $commits;
-        // $this->viewData['page']       = $page;
-        $this->viewData['highestCommit']    = $highestCommits;
-        $this->viewData['highestMonth']    = $highestMonth;
-        $this->viewData['commitCount'] = $commitCount;
-        $this->viewData['oldestCommit'] = date('F Y', strtotime($oldest->date));
-        $this->viewData['statistics'] = $statistics;
+        $this->viewData['commits']       = $commits;
+        $this->viewData['highestCommit'] = $highestCommits;
+        $this->viewData['highestMonth']  = $highestMonth;
+        $this->viewData['commitCount']   = $commitCount;
+        $this->viewData['oldestCommit']  = date('F Y', strtotime($oldest->date));
+        $this->viewData['statistics']    = $statistics;
 
 		$this->viewOpts['page']['layout']  = 'default';
         $this->viewOpts['page']['content'] = 'home/index';
