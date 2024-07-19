@@ -50,8 +50,9 @@ class HomeModel extends Model
         $managedCommits = [];
 
         foreach ($commits as $commit) {
+            dd($commit->date);
             // we only want commits within the last 12 months of the current day to be retrieved
-            if (strtotime($commit->date) >= strtotime("-12 months", date('Y-m-d'))) {
+            if (strtotime($commit->date) >= strtotime("-12 months", date('Y-m-d', time()))) {
                 $managedCommits[] = $commit;
             }
         }
