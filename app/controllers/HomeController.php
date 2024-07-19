@@ -78,9 +78,11 @@ class HomeController extends Controller
         echo '<br>';
 
         foreach ($commits as $commit) {
-            dd($commit->date);
+            echo $commit->date . '<br>';
             // $statistics[date('F Y', strtotime($commit->date))] += 1;
         }
+
+        die();
 
         // get the highestcommits for display calculations
         $highestCommits = 0;
