@@ -43,6 +43,14 @@
                     <img src="/public/img/logo.svg" alt="" style="height: 32px; padding-right: 16px; ">
                     J T I O N G . D E V
                 </a>
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a href="https://jtiong.blog" class="nav-link">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://jtiong.dev" class="nav-link active">Commits</a>
+                    </li>
+                </ul>
                 <ul class="navbar-nav ml-auto">
                     <?php
                     if (!empty($_SESSION['authenticated']) &&

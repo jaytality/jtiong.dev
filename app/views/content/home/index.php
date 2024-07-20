@@ -49,7 +49,11 @@
                                         <td class="text-right">
                                             <strong><a href="/project/<?=$commit->repo_name?>" class="text-danger"><?=$commit->repo_name?></a></strong>
                                             <br />
-                                            <small class="text-muted"><?=date("d M Y (H:i:s)", strtotime($commit->date))?></small>
+                                            <?php
+                                                // not idea doing this in the view, but converting to current timezone
+                                                $timestamp = new \DateTime($commit->date, new DateTimeZone("Australia/Sydney"));
+                                            ?>
+                                            <small class="text-muted"><?=$timestamp->format("d M Y (H:i:s)")?></small>
                                         </td>
                                         <td>
                                             <span style="font-size: 1.1rem; ">
