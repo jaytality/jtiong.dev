@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">
-        <div class="col-md-12" style="padding: 1.5rem 0 0 1.5rem; ">
+        <div class="col-md-12" style="padding: 1.5rem 0 0 0; ">
             <h3>Changelog</h3>
             <hr />
         </div>
