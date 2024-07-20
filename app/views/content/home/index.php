@@ -51,7 +51,9 @@
                                             <br />
                                             <?php
                                                 // not idea doing this in the view, but converting to current timezone
-                                                $timestamp = new \DateTime($commit->date, new DateTimeZone("Australia/Sydney"));
+                                                $timestamp = new \DateTime($commit->date);
+                                                $timestamp->setTimezone(new DateTimeZone("Australia/Sydney"));
+                                                $timestamp->add(new DateInterval('PT10H'));
                                             ?>
                                             <small class="text-muted"><?=$timestamp->format("d M Y (H:i:s)")?></small>
                                         </td>
