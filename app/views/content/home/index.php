@@ -71,7 +71,4 @@
             </table>
         </div>
     </div>
-    <?php
-        // include(views . '/_components/pagination.php');
-    ?>
 </div>
