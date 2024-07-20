@@ -121,6 +121,21 @@ class HomeController extends Controller
         exit();
     }
 
+    /**
+     * shows a changelog of development of jtiong.dev
+     *
+     * @return void
+     */
+    function changelog()
+    {
+		$this->viewOpts['page']['layout']  = 'default';
+        $this->viewOpts['page']['content'] = 'home/changelog';
+        $this->viewOpts['page']['section'] = 'home';
+        $this->viewOpts['page']['title']   = 'Home';
+
+        $this->view->load($this->viewOpts, $this->viewData);
+    }
+
     function getLifespanDays($startDate, $endDate)
     {
         $start = new DateTime($startDate);

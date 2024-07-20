@@ -29,6 +29,12 @@ $base->get("/logout", function () {
     return $controller->{'logout'}();
 });
 
+// GET /changelog
+$base->get("/changelog", function () {
+    $controller = new spark\Controllers\HomeController;
+    return $controller->{'changelog'}();
+});
+
 // GET /page
 $base->get("/:page", function ($page) {
     $controller = new spark\Controllers\HomeController;
