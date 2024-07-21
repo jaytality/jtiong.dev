@@ -47,9 +47,6 @@
                     <li class="nav-item">
                         <a href="https://jtiong.blog" class="nav-link">Blog</a>
                     </li>
-                    <li class="nav-item">
-                        <a href="https://jtiong.dev" class="nav-link active">Commits</a>
-                    </li>
                 </ul>
                 <ul class="navbar-nav ml-auto">
                     <?php
