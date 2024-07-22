@@ -43,13 +43,15 @@
                     <img src="/public/img/logo.svg" alt="" style="height: 32px; padding-right: 16px; ">
                     J T I O N G . D E V
                 </a>
-                <ul class="navbar-nav mr-auto">
+                <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                         <a href="https://jtiong.blog" class="nav-link">Blog</a>
                     </li>
-                </ul>
-                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a href="https://jtiong.dev" class="nav-link active">Commits</a>
+                    </li>
                     <?php
+                    // admin link
                     if (!empty($_SESSION['authenticated']) &&
                         $_SESSION['authenticated']) {
                         ?>
@@ -58,21 +60,17 @@
                         </li>
                         <?php
                     }
-                    ?>
-                    <li class="nav-item">
-                        <?php
-                        if (!empty($_SESSION['authenticated']) &&
-                            $_SESSION['authenticated']) {
-                            ?>
-                            <a href="/logout" class="nav-link">log out</a>
-                            <?php
-                        } else {
-                            ?>
-                            <a href="/login" class="nav-link">log in</a>
-                            <?php
-                        }
+
+                    // logout link
+                    if (!empty($_SESSION['authenticated']) &&
+                        $_SESSION['authenticated']) {
                         ?>
-                    </li>
+                        <li class="nav-item">
+                            <a href="/logout" class="nav-link">log out</a>
+                        </li>
+                        <?php
+                    }
+                    ?>
                 </ul>
             </div>
         </nav>
