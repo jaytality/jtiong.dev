@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-md-12" style="padding: 1.5rem 0 0 1.5rem; ">
             <p>
-                <?='<strong>' . $commitCount . '</strong> commits since <strong>' . $oldestCommit . '</strong> - ' . number_format(($commitCount / $lifespanDays), 2) . ' commits per day!'?><br />
+                <?='<strong>' . $commitCount . '</strong> commits since <strong>' . $oldestCommit . '</strong> - ' . number_format(($commitCount / $lifespanDays), 2) . ' commits per day!'?> <small class="text-muted">out of <?=$lifespanDays?> days</small><br />
                 <strong>Most Commits:</strong> <?=$highestCommit . ' in ' . $highestMonth?><br />
             </p>
         </div>
