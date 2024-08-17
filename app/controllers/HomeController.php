@@ -65,6 +65,8 @@ class HomeController extends Controller
                 $highestMonth = $stat;
             }
         }
+        
+        dd($commits);
 
         $this->viewData['commits']       = $commits;
         $this->viewData['highestCommit'] = $highestCommits;
