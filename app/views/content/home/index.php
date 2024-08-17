@@ -38,7 +38,7 @@
                     <?php
                         $limit = 1;
                         foreach ($commits as $commit) {
-                            if ($commit->visible) {
+                            // if ($commit->visible) {
                                 if ($limit >= 50) {
                                     break;
                                 }
@@ -66,7 +66,7 @@
                                     </tr>
                                 <?php
                                 $limit++;
-                            }
+                            // }
                         }
                     ?>
                 </tbody>
