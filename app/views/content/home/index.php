@@ -61,7 +61,7 @@
                                             <span style="font-size: 1.1rem; ">
                                                 <small class="text-warning">#<?=substr($commit->sha, 0, 6)?></small>
                                             </span>
-                                            <p style="color: #ccc; "><?=$commit->message?></p>
+                                            <p style="color: #ccc; "><?=nl2br($commit->message)?></p>
                                         </td>
                                     </tr>
                                 <?php
