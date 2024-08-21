@@ -81,6 +81,7 @@ foreach ($repos as $repo) {
                     'author'    => $commit['commit']['author']['name'],
                     'email'     => $commit['commit']['author']['email'],
                     'url'       => $commit['html_url'],
+                    'visible'   => true,
                 ]);
             } else {
                 echo "\tCommit exists... skipping!\n\n";
