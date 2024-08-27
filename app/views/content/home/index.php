@@ -44,6 +44,7 @@
                                 }
 
                                 $time = new \spark\Helpers\Time;
+                                $emoji = new \MarufMax\Emoticon\Emoticon();
                                 ?>
                                     <tr>
                                         <td class="text-right">
@@ -61,7 +62,7 @@
                                             <span style="font-size: 1.1rem; ">
                                                 <small class="text-warning">#<?=substr($commit->sha, 0, 6)?></small>
                                             </span>
-                                            <p style="color: #ccc; "><?=nl2br($commit->message)?></p>
+                                            <p style="color: #ccc; "><?=nl2br($emoji->emojify($commit->message))?></p>
                                         </td>
                                     </tr>
                                 <?php
